@@ -1,0 +1,1593 @@
+Plecs {
+  Name          "DCfilter"
+  Version       "4.9"
+  CircuitModel  "ContStateSpace"
+  StartTime     "0.0"
+  TimeSpan      "1.0"
+  Timeout       ""
+  Solver        "auto"
+  MaxStep       "1e-3"
+  InitStep      "-1"
+  FixedStep     "1e-3"
+  Refine        "1"
+  ZCStepSize    "1e-9"
+  RelTol        "1e-3"
+  AbsTol        "-1"
+  TurnOnThreshold "0"
+  NonIdealSwitchResistance "1"
+  SyncFixedStepTasks "2"
+  UseSingleCommonBaseRate "2"
+  LossVariableLimitExceededMsg "3"
+  NegativeSwitchLossMsg "3"
+  DivisionByZeroMsg "3"
+  DatatypeOverflowMsg "2"
+  DatatypeInheritanceConflictMsg "1"
+  ContSampleTimeConflictMsg "1"
+  StiffnessDetectionMsg "2"
+  MaxConsecutiveZCs "1000"
+  AlgebraicLoopWithStateMachineMsg "3"
+  AssertionAction "1"
+  FixedPointDatatypeOverride "1"
+  InitializationCommands "selfInductance_LLC    \t\t\t\t= [3 3]*1e-3;\nwinding"
+"Resistance_LLC \t\t\t\t= [3 3]*1e-3;\nKcmc_LLC              \t\t\t\t= 0.99625"
+";\nLm_LLC\t\t\t\t\t\t\t\t\t= selfInductance_LLC(1)*Kcmc_LLC;"
+  InitialState  "1"
+  SystemState   ""
+  TaskingMode   "1"
+  TaskConfigurations ""
+  CodeGenParameterInlining "2"
+  CodeGenFloatingPointFormat "2"
+  CodeGenAbsTimeUsageMsg "3"
+  CodeGenBaseName ""
+  CodeGenOutputDir ""
+  CodeGenExtraOpts ""
+  CodeGenTarget "Generic"
+  CodeGenTargetSettings ""
+  ExtendedMatrixPrecision "1"
+  MatrixSignificanceCheck "2"
+  RemoveUnusedStateSpaceOutputs "1"
+  EnableStateSpaceSplitting "2"
+  DisplayStateSpaceSplitting "1"
+  DiscretizationMethod "2"
+  ExternalModeSettings ""
+  AlgebraicLoopMethod "1"
+  AlgebraicLoopTolerance "1e-6"
+  ScriptsDialogGeometry ""
+  ScriptsDialogSplitterPos "0"
+  Schematic {
+    Location      [0, 24; 1920, 1047]
+    ZoomFactor    1
+    SliderPosition [0, 0]
+    ShowBrowser   off
+    BrowserWidth  100
+    Component {
+      Type          Capacitor
+      Name          "Co2"
+      Show          off
+      Position      [1170, 295]
+      Direction     up
+      Flipped       off
+      LabelPosition east
+      Parameter {
+        Variable      "C"
+        Value         "5e-6"
+        Show          on
+      }
+      Parameter {
+        Variable      "v_init"
+        Value         "0"
+        Show          off
+      }
+    }
+    Component {
+      Type          Resistor
+      Name          "Rc2"
+      Show          off
+      Position      [1170, 350]
+      Direction     up
+      Flipped       off
+      LabelPosition east
+      Parameter {
+        Variable      "R"
+        Value         "7e-3"
+        Show          on
+      }
+    }
+    Component {
+      Type          Reference
+      SrcComponent  "Components/Electrical/Transformers/Mutual\\nInd. 2"
+      Name          "CMC"
+      Show          on
+      Position      [1300, 350]
+      Direction     right
+      Flipped       on
+      LabelPosition north
+      Frame         [-20, -15; 20, 15]
+      Parameter {
+        Variable      "L"
+        Value         "selfInductance_LLC"
+        Show          off
+      }
+      Parameter {
+        Variable      "R"
+        Value         "windingResistance_LLC"
+        Show          off
+      }
+      Parameter {
+        Variable      "Lm"
+        Value         "Lm_LLC"
+        Show          off
+      }
+      Parameter {
+        Variable      "Rm"
+        Value         "0"
+        Show          off
+      }
+      Parameter {
+        Variable      "i0"
+        Value         "[0 0]"
+        Show          off
+      }
+      Terminal {
+        Type          Port
+        Position      [-10, -20]
+        Direction     up
+      }
+      Terminal {
+        Type          Port
+        Position      [-10, 20]
+        Direction     down
+      }
+      Terminal {
+        Type          Port
+        Position      [10, -20]
+        Direction     up
+      }
+      Terminal {
+        Type          Port
+        Position      [10, 20]
+        Direction     down
+      }
+    }
+    Component {
+      Type          Inductor
+      Name          "L1"
+      Show          off
+      Position      [1170, 410]
+      Direction     up
+      Flipped       on
+      LabelPosition east
+      Parameter {
+        Variable      "L"
+        Value         "10e-9"
+        Show          on
+      }
+      Parameter {
+        Variable      "i_init"
+        Value         "0"
+        Show          off
+      }
+    }
+    Component {
+      Type          Capacitor
+      Name          "Co3"
+      Show          off
+      Position      [1475, 295]
+      Direction     up
+      Flipped       off
+      LabelPosition east
+      Parameter {
+        Variable      "C"
+        Value         "4.7e-6"
+        Show          on
+      }
+      Parameter {
+        Variable      "v_init"
+        Value         "0"
+        Show          off
+      }
+    }
+    Component {
+      Type          Resistor
+      Name          "Rc3"
+      Show          off
+      Position      [1475, 350]
+      Direction     up
+      Flipped       off
+      LabelPosition east
+      Parameter {
+        Variable      "R"
+        Value         "4.7e-3"
+        Show          on
+      }
+    }
+    Component {
+      Type          Inductor
+      Name          "L2"
+      Show          off
+      Position      [1475, 410]
+      Direction     up
+      Flipped       on
+      LabelPosition east
+      Parameter {
+        Variable      "L"
+        Value         "31e-9"
+        Show          on
+      }
+      Parameter {
+        Variable      "i_init"
+        Value         "0"
+        Show          off
+      }
+    }
+    Component {
+      Type          Capacitor
+      Name          "Co4"
+      Show          off
+      Position      [1550, 295]
+      Direction     up
+      Flipped       off
+      LabelPosition east
+      Parameter {
+        Variable      "C"
+        Value         "4.7e-6"
+        Show          on
+      }
+      Parameter {
+        Variable      "v_init"
+        Value         "0"
+        Show          off
+      }
+    }
+    Component {
+      Type          Resistor
+      Name          "Rc4"
+      Show          off
+      Position      [1550, 350]
+      Direction     up
+      Flipped       off
+      LabelPosition east
+      Parameter {
+        Variable      "R"
+        Value         "4.7e-3"
+        Show          on
+      }
+    }
+    Component {
+      Type          Inductor
+      Name          "L3"
+      Show          off
+      Position      [1550, 410]
+      Direction     up
+      Flipped       on
+      LabelPosition east
+      Parameter {
+        Variable      "L"
+        Value         "31e-9"
+        Show          on
+      }
+      Parameter {
+        Variable      "i_init"
+        Value         "0"
+        Show          off
+      }
+    }
+    Component {
+      Type          Capacitor
+      Name          "Co5"
+      Show          off
+      Position      [1105, 295]
+      Direction     up
+      Flipped       off
+      LabelPosition east
+      Parameter {
+        Variable      "C"
+        Value         "5e-6"
+        Show          on
+      }
+      Parameter {
+        Variable      "v_init"
+        Value         "0"
+        Show          off
+      }
+    }
+    Component {
+      Type          Resistor
+      Name          "Rc5"
+      Show          off
+      Position      [1105, 350]
+      Direction     up
+      Flipped       off
+      LabelPosition east
+      Parameter {
+        Variable      "R"
+        Value         "7e-3"
+        Show          on
+      }
+    }
+    Component {
+      Type          Inductor
+      Name          "L4"
+      Show          off
+      Position      [1105, 410]
+      Direction     up
+      Flipped       on
+      LabelPosition east
+      Parameter {
+        Variable      "L"
+        Value         "10e-9"
+        Show          on
+      }
+      Parameter {
+        Variable      "i_init"
+        Value         "0"
+        Show          off
+      }
+    }
+    Component {
+      Type          Capacitor
+      Name          "Co6"
+      Show          off
+      Position      [1040, 295]
+      Direction     up
+      Flipped       off
+      LabelPosition east
+      Parameter {
+        Variable      "C"
+        Value         "5e-6"
+        Show          on
+      }
+      Parameter {
+        Variable      "v_init"
+        Value         "0"
+        Show          off
+      }
+    }
+    Component {
+      Type          Resistor
+      Name          "Rc6"
+      Show          off
+      Position      [1040, 350]
+      Direction     up
+      Flipped       off
+      LabelPosition east
+      Parameter {
+        Variable      "R"
+        Value         "7e-3"
+        Show          on
+      }
+    }
+    Component {
+      Type          Inductor
+      Name          "L5"
+      Show          off
+      Position      [1040, 410]
+      Direction     up
+      Flipped       on
+      LabelPosition east
+      Parameter {
+        Variable      "L"
+        Value         "10e-9"
+        Show          on
+      }
+      Parameter {
+        Variable      "i_init"
+        Value         "0"
+        Show          off
+      }
+    }
+    Component {
+      Type          Capacitor
+      Name          "Co7"
+      Show          off
+      Position      [975, 295]
+      Direction     up
+      Flipped       off
+      LabelPosition east
+      Parameter {
+        Variable      "C"
+        Value         "5e-6"
+        Show          on
+      }
+      Parameter {
+        Variable      "v_init"
+        Value         "0"
+        Show          off
+      }
+    }
+    Component {
+      Type          Resistor
+      Name          "Rc7"
+      Show          off
+      Position      [975, 350]
+      Direction     up
+      Flipped       off
+      LabelPosition east
+      Parameter {
+        Variable      "R"
+        Value         "7e-3"
+        Show          on
+      }
+    }
+    Component {
+      Type          Inductor
+      Name          "L6"
+      Show          off
+      Position      [975, 410]
+      Direction     up
+      Flipped       on
+      LabelPosition east
+      Parameter {
+        Variable      "L"
+        Value         "10e-9"
+        Show          on
+      }
+      Parameter {
+        Variable      "i_init"
+        Value         "0"
+        Show          off
+      }
+    }
+    Component {
+      Type          Capacitor
+      Name          "Co8"
+      Show          off
+      Position      [815, 295]
+      Direction     up
+      Flipped       off
+      LabelPosition east
+      Parameter {
+        Variable      "C"
+        Value         "0.25e-6"
+        Show          on
+      }
+      Parameter {
+        Variable      "v_init"
+        Value         "0"
+        Show          off
+      }
+    }
+    Component {
+      Type          Resistor
+      Name          "Rc8"
+      Show          off
+      Position      [815, 350]
+      Direction     up
+      Flipped       off
+      LabelPosition east
+      Parameter {
+        Variable      "R"
+        Value         "43.5e-3"
+        Show          on
+      }
+    }
+    Component {
+      Type          Inductor
+      Name          "L7"
+      Show          off
+      Position      [815, 410]
+      Direction     up
+      Flipped       on
+      LabelPosition east
+      Parameter {
+        Variable      "L"
+        Value         "2.5e-9"
+        Show          on
+      }
+      Parameter {
+        Variable      "i_init"
+        Value         "0"
+        Show          off
+      }
+    }
+    Component {
+      Type          Capacitor
+      Name          "Co9"
+      Show          off
+      Position      [730, 295]
+      Direction     up
+      Flipped       off
+      LabelPosition east
+      Parameter {
+        Variable      "C"
+        Value         "0.25e-6"
+        Show          on
+      }
+      Parameter {
+        Variable      "v_init"
+        Value         "0"
+        Show          off
+      }
+    }
+    Component {
+      Type          Resistor
+      Name          "Rc9"
+      Show          off
+      Position      [730, 350]
+      Direction     up
+      Flipped       off
+      LabelPosition east
+      Parameter {
+        Variable      "R"
+        Value         "43.5e-3"
+        Show          on
+      }
+    }
+    Component {
+      Type          Inductor
+      Name          "L8"
+      Show          off
+      Position      [730, 410]
+      Direction     up
+      Flipped       on
+      LabelPosition east
+      Parameter {
+        Variable      "L"
+        Value         "2.5e-9"
+        Show          on
+      }
+      Parameter {
+        Variable      "i_init"
+        Value         "0"
+        Show          off
+      }
+    }
+    Component {
+      Type          Capacitor
+      Name          "Co10"
+      Show          off
+      Position      [645, 295]
+      Direction     up
+      Flipped       off
+      LabelPosition east
+      Parameter {
+        Variable      "C"
+        Value         "0.25e-6"
+        Show          on
+      }
+      Parameter {
+        Variable      "v_init"
+        Value         "0"
+        Show          off
+      }
+    }
+    Component {
+      Type          Resistor
+      Name          "Rc10"
+      Show          off
+      Position      [645, 350]
+      Direction     up
+      Flipped       off
+      LabelPosition east
+      Parameter {
+        Variable      "R"
+        Value         "43.5e-3"
+        Show          on
+      }
+    }
+    Component {
+      Type          Inductor
+      Name          "L9"
+      Show          off
+      Position      [645, 410]
+      Direction     up
+      Flipped       on
+      LabelPosition east
+      Parameter {
+        Variable      "L"
+        Value         "2.5e-9"
+        Show          on
+      }
+      Parameter {
+        Variable      "i_init"
+        Value         "0"
+        Show          off
+      }
+    }
+    Component {
+      Type          Capacitor
+      Name          "Co11"
+      Show          off
+      Position      [560, 295]
+      Direction     up
+      Flipped       off
+      LabelPosition east
+      Parameter {
+        Variable      "C"
+        Value         "0.25e-6"
+        Show          on
+      }
+      Parameter {
+        Variable      "v_init"
+        Value         "0"
+        Show          off
+      }
+    }
+    Component {
+      Type          Resistor
+      Name          "Rc11"
+      Show          off
+      Position      [560, 350]
+      Direction     up
+      Flipped       off
+      LabelPosition east
+      Parameter {
+        Variable      "R"
+        Value         "43.5e-3"
+        Show          on
+      }
+    }
+    Component {
+      Type          Inductor
+      Name          "L10"
+      Show          off
+      Position      [560, 410]
+      Direction     up
+      Flipped       on
+      LabelPosition east
+      Parameter {
+        Variable      "L"
+        Value         "2.5e-9"
+        Show          on
+      }
+      Parameter {
+        Variable      "i_init"
+        Value         "0"
+        Show          off
+      }
+    }
+    Component {
+      Type          Capacitor
+      Name          "Co12"
+      Show          off
+      Position      [475, 295]
+      Direction     up
+      Flipped       off
+      LabelPosition east
+      Parameter {
+        Variable      "C"
+        Value         "0.25e-6"
+        Show          on
+      }
+      Parameter {
+        Variable      "v_init"
+        Value         "0"
+        Show          off
+      }
+    }
+    Component {
+      Type          Resistor
+      Name          "Rc12"
+      Show          off
+      Position      [475, 350]
+      Direction     up
+      Flipped       off
+      LabelPosition east
+      Parameter {
+        Variable      "R"
+        Value         "43.5e-3"
+        Show          on
+      }
+    }
+    Component {
+      Type          Inductor
+      Name          "L11"
+      Show          off
+      Position      [475, 410]
+      Direction     up
+      Flipped       on
+      LabelPosition east
+      Parameter {
+        Variable      "L"
+        Value         "2.5e-9"
+        Show          on
+      }
+      Parameter {
+        Variable      "i_init"
+        Value         "0"
+        Show          off
+      }
+    }
+    Component {
+      Type          Capacitor
+      Name          "Co13"
+      Show          off
+      Position      [390, 295]
+      Direction     up
+      Flipped       off
+      LabelPosition east
+      Parameter {
+        Variable      "C"
+        Value         "0.25e-6"
+        Show          on
+      }
+      Parameter {
+        Variable      "v_init"
+        Value         "0"
+        Show          off
+      }
+    }
+    Component {
+      Type          Resistor
+      Name          "Rc13"
+      Show          off
+      Position      [390, 350]
+      Direction     up
+      Flipped       off
+      LabelPosition east
+      Parameter {
+        Variable      "R"
+        Value         "43.5e-3"
+        Show          on
+      }
+    }
+    Component {
+      Type          Inductor
+      Name          "L12"
+      Show          off
+      Position      [390, 410]
+      Direction     up
+      Flipped       on
+      LabelPosition east
+      Parameter {
+        Variable      "L"
+        Value         "2.5e-9"
+        Show          on
+      }
+      Parameter {
+        Variable      "i_init"
+        Value         "0"
+        Show          off
+      }
+    }
+    Component {
+      Type          Capacitor
+      Name          "Co14"
+      Show          off
+      Position      [305, 295]
+      Direction     up
+      Flipped       off
+      LabelPosition east
+      Parameter {
+        Variable      "C"
+        Value         "0.25e-6"
+        Show          on
+      }
+      Parameter {
+        Variable      "v_init"
+        Value         "0"
+        Show          off
+      }
+    }
+    Component {
+      Type          Resistor
+      Name          "Rc14"
+      Show          off
+      Position      [305, 350]
+      Direction     up
+      Flipped       off
+      LabelPosition east
+      Parameter {
+        Variable      "R"
+        Value         "43.5e-3"
+        Show          on
+      }
+    }
+    Component {
+      Type          Inductor
+      Name          "L13"
+      Show          off
+      Position      [305, 410]
+      Direction     up
+      Flipped       on
+      LabelPosition east
+      Parameter {
+        Variable      "L"
+        Value         "2.5e-9"
+        Show          on
+      }
+      Parameter {
+        Variable      "i_init"
+        Value         "0"
+        Show          off
+      }
+    }
+    Component {
+      Type          Capacitor
+      Name          "Co15"
+      Show          off
+      Position      [220, 295]
+      Direction     up
+      Flipped       off
+      LabelPosition east
+      Parameter {
+        Variable      "C"
+        Value         "0.25e-6"
+        Show          on
+      }
+      Parameter {
+        Variable      "v_init"
+        Value         "0"
+        Show          off
+      }
+    }
+    Component {
+      Type          Resistor
+      Name          "Rc15"
+      Show          off
+      Position      [220, 350]
+      Direction     up
+      Flipped       off
+      LabelPosition east
+      Parameter {
+        Variable      "R"
+        Value         "43.5e-3"
+        Show          on
+      }
+    }
+    Component {
+      Type          Inductor
+      Name          "L14"
+      Show          off
+      Position      [220, 410]
+      Direction     up
+      Flipped       on
+      LabelPosition east
+      Parameter {
+        Variable      "L"
+        Value         "2.5e-9"
+        Show          on
+      }
+      Parameter {
+        Variable      "i_init"
+        Value         "0"
+        Show          off
+      }
+    }
+    Component {
+      Type          VoltageSource
+      Name          "V"
+      Show          off
+      Position      [120, 350]
+      Direction     down
+      Flipped       on
+      LabelPosition east
+      Parameter {
+        Variable      "DiscretizationBehavior"
+        Value         "2"
+        Show          off
+      }
+      Parameter {
+        Variable      "StateSpaceInlining"
+        Value         "1"
+        Show          off
+      }
+    }
+    Component {
+      Type          SmallSignalPerturbation
+      Name          "Perturbation"
+      Show          off
+      Position      [80, 350]
+      Direction     right
+      Flipped       off
+      LabelPosition south
+      Parameter {
+        Variable      "ShowInput"
+        Value         "1"
+        Show          off
+      }
+    }
+    Component {
+      Type          Voltmeter
+      Name          "Vm1"
+      Show          off
+      Position      [1720, 350]
+      Direction     up
+      Flipped       off
+      LabelPosition west
+    }
+    Component {
+      Type          SmallSignalResponse
+      Name          "Response"
+      Show          off
+      Position      [1760, 350]
+      Direction     right
+      Flipped       off
+      LabelPosition south
+      Parameter {
+        Variable      "ShowReference"
+        Value         "1"
+        Show          off
+      }
+      Parameter {
+        Variable      "InvertReference"
+        Value         "1"
+        Show          off
+      }
+    }
+    Component {
+      Type          Capacitor
+      Name          "C1"
+      Show          off
+      Position      [1300, 300]
+      Direction     left
+      Flipped       on
+      LabelPosition north
+      Parameter {
+        Variable      "C"
+        Value         "3e-12"
+        Show          off
+      }
+      Parameter {
+        Variable      "v_init"
+        Value         "0"
+        Show          off
+      }
+    }
+    Component {
+      Type          Capacitor
+      Name          "C2"
+      Show          off
+      Position      [1300, 385]
+      Direction     left
+      Flipped       on
+      LabelPosition north
+      Parameter {
+        Variable      "C"
+        Value         "3e-12"
+        Show          off
+      }
+      Parameter {
+        Variable      "v_init"
+        Value         "0"
+        Show          off
+      }
+    }
+    Component {
+      Type          Resistor
+      Name          "Rdc1"
+      Show          off
+      Position      [120, 300]
+      Direction     up
+      Flipped       off
+      LabelPosition east
+      Parameter {
+        Variable      "R"
+        Value         "1e-6"
+        Show          off
+      }
+    }
+    Component {
+      Type          Capacitor
+      Name          "Co24"
+      Show          off
+      Position      [1390, 295]
+      Direction     up
+      Flipped       off
+      LabelPosition east
+      Parameter {
+        Variable      "C"
+        Value         "0.25e-6"
+        Show          on
+      }
+      Parameter {
+        Variable      "v_init"
+        Value         "0"
+        Show          off
+      }
+    }
+    Component {
+      Type          Resistor
+      Name          "Rc24"
+      Show          off
+      Position      [1390, 350]
+      Direction     up
+      Flipped       off
+      LabelPosition east
+      Parameter {
+        Variable      "R"
+        Value         "43.5e-3"
+        Show          on
+      }
+    }
+    Component {
+      Type          Inductor
+      Name          "L23"
+      Show          off
+      Position      [1390, 410]
+      Direction     up
+      Flipped       on
+      LabelPosition east
+      Parameter {
+        Variable      "L"
+        Value         "2.5e-9"
+        Show          on
+      }
+      Parameter {
+        Variable      "i_init"
+        Value         "0"
+        Show          off
+      }
+    }
+    Connection {
+      Type          Wire
+      SrcComponent  "Co2"
+      SrcTerminal   1
+      Points        [1170, 255]
+      Branch {
+        Points        [1270, 255; 1270, 300]
+        Branch {
+          Points        [1270, 340]
+          DstComponent  "CMC"
+          DstTerminal   1
+        }
+        Branch {
+          DstComponent  "C1"
+          DstTerminal   2
+        }
+      }
+      Branch {
+        Points        [1105, 255]
+        Branch {
+          Points        [1040, 255]
+          Branch {
+            Points        [975, 255]
+            Branch {
+              DstComponent  "Co7"
+              DstTerminal   1
+            }
+            Branch {
+              Points        [815, 255]
+              Branch {
+                Points        [730, 255]
+                Branch {
+                  DstComponent  "Co9"
+                  DstTerminal   1
+                }
+                Branch {
+                  Points        [645, 255]
+                  Branch {
+                    DstComponent  "Co10"
+                    DstTerminal   1
+                  }
+                  Branch {
+                    Points        [560, 255]
+                    Branch {
+                      DstComponent  "Co11"
+                      DstTerminal   1
+                    }
+                    Branch {
+                      Points        [475, 255]
+                      Branch {
+                        DstComponent  "Co12"
+                        DstTerminal   1
+                      }
+                      Branch {
+                        Points        [390, 255]
+                        Branch {
+                          DstComponent  "Co13"
+                          DstTerminal   1
+                        }
+                        Branch {
+                          Points        [305, 255]
+                          Branch {
+                            Points        [220, 255]
+                            Branch {
+                              DstComponent  "Co15"
+                              DstTerminal   1
+                            }
+                            Branch {
+                              Points        [120, 255]
+                              DstComponent  "Rdc1"
+                              DstTerminal   1
+                            }
+                          }
+                          Branch {
+                            DstComponent  "Co14"
+                            DstTerminal   1
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+              Branch {
+                DstComponent  "Co8"
+                DstTerminal   1
+              }
+            }
+          }
+          Branch {
+            DstComponent  "Co6"
+            DstTerminal   1
+          }
+        }
+        Branch {
+          DstComponent  "Co5"
+          DstTerminal   1
+        }
+      }
+    }
+    Connection {
+      Type          Wire
+      SrcComponent  "Co2"
+      SrcTerminal   2
+      DstComponent  "Rc2"
+      DstTerminal   1
+    }
+    Connection {
+      Type          Wire
+      SrcComponent  "Rc2"
+      SrcTerminal   2
+      DstComponent  "L1"
+      DstTerminal   2
+    }
+    Connection {
+      Type          Wire
+      SrcComponent  "L1"
+      SrcTerminal   1
+      Points        [1170, 445]
+      Branch {
+        Points        [1270, 445; 1270, 385]
+        Branch {
+          Points        [1270, 360]
+          DstComponent  "CMC"
+          DstTerminal   3
+        }
+        Branch {
+          DstComponent  "C2"
+          DstTerminal   2
+        }
+      }
+      Branch {
+        Points        [1105, 445]
+        Branch {
+          Points        [1040, 445]
+          Branch {
+            Points        [975, 445]
+            Branch {
+              DstComponent  "L6"
+              DstTerminal   1
+            }
+            Branch {
+              Points        [815, 445]
+              Branch {
+                Points        [730, 445]
+                Branch {
+                  Points        [645, 445]
+                  Branch {
+                    Points        [560, 445]
+                    Branch {
+                      Points        [475, 445]
+                      Branch {
+                        Points        [390, 445]
+                        Branch {
+                          Points        [305, 445]
+                          Branch {
+                            Points        [220, 445]
+                            Branch {
+                              DstComponent  "L14"
+                              DstTerminal   1
+                            }
+                            Branch {
+                              Points        [120, 445]
+                              DstComponent  "V"
+                              DstTerminal   2
+                            }
+                          }
+                          Branch {
+                            DstComponent  "L13"
+                            DstTerminal   1
+                          }
+                        }
+                        Branch {
+                          DstComponent  "L12"
+                          DstTerminal   1
+                        }
+                      }
+                      Branch {
+                        DstComponent  "L11"
+                        DstTerminal   1
+                      }
+                    }
+                    Branch {
+                      DstComponent  "L10"
+                      DstTerminal   1
+                    }
+                  }
+                  Branch {
+                    DstComponent  "L9"
+                    DstTerminal   1
+                  }
+                }
+                Branch {
+                  DstComponent  "L8"
+                  DstTerminal   1
+                }
+              }
+              Branch {
+                DstComponent  "L7"
+                DstTerminal   1
+              }
+            }
+          }
+          Branch {
+            DstComponent  "L5"
+            DstTerminal   1
+          }
+        }
+        Branch {
+          DstComponent  "L4"
+          DstTerminal   1
+        }
+      }
+    }
+    Connection {
+      Type          Wire
+      SrcComponent  "Co3"
+      SrcTerminal   2
+      DstComponent  "Rc3"
+      DstTerminal   1
+    }
+    Connection {
+      Type          Wire
+      SrcComponent  "Rc3"
+      SrcTerminal   2
+      DstComponent  "L2"
+      DstTerminal   2
+    }
+    Connection {
+      Type          Wire
+      SrcComponent  "Co4"
+      SrcTerminal   2
+      DstComponent  "Rc4"
+      DstTerminal   1
+    }
+    Connection {
+      Type          Wire
+      SrcComponent  "Rc4"
+      SrcTerminal   2
+      DstComponent  "L3"
+      DstTerminal   2
+    }
+    Connection {
+      Type          Wire
+      SrcComponent  "Co5"
+      SrcTerminal   2
+      DstComponent  "Rc5"
+      DstTerminal   1
+    }
+    Connection {
+      Type          Wire
+      SrcComponent  "Rc5"
+      SrcTerminal   2
+      DstComponent  "L4"
+      DstTerminal   2
+    }
+    Connection {
+      Type          Wire
+      SrcComponent  "Co6"
+      SrcTerminal   2
+      DstComponent  "Rc6"
+      DstTerminal   1
+    }
+    Connection {
+      Type          Wire
+      SrcComponent  "Rc6"
+      SrcTerminal   2
+      DstComponent  "L5"
+      DstTerminal   2
+    }
+    Connection {
+      Type          Wire
+      SrcComponent  "Co7"
+      SrcTerminal   2
+      DstComponent  "Rc7"
+      DstTerminal   1
+    }
+    Connection {
+      Type          Wire
+      SrcComponent  "Rc7"
+      SrcTerminal   2
+      DstComponent  "L6"
+      DstTerminal   2
+    }
+    Connection {
+      Type          Wire
+      SrcComponent  "Co8"
+      SrcTerminal   2
+      DstComponent  "Rc8"
+      DstTerminal   1
+    }
+    Connection {
+      Type          Wire
+      SrcComponent  "Rc8"
+      SrcTerminal   2
+      DstComponent  "L7"
+      DstTerminal   2
+    }
+    Connection {
+      Type          Wire
+      SrcComponent  "Co9"
+      SrcTerminal   2
+      DstComponent  "Rc9"
+      DstTerminal   1
+    }
+    Connection {
+      Type          Wire
+      SrcComponent  "Rc9"
+      SrcTerminal   2
+      DstComponent  "L8"
+      DstTerminal   2
+    }
+    Connection {
+      Type          Wire
+      SrcComponent  "Co10"
+      SrcTerminal   2
+      DstComponent  "Rc10"
+      DstTerminal   1
+    }
+    Connection {
+      Type          Wire
+      SrcComponent  "Rc10"
+      SrcTerminal   2
+      DstComponent  "L9"
+      DstTerminal   2
+    }
+    Connection {
+      Type          Wire
+      SrcComponent  "Co11"
+      SrcTerminal   2
+      DstComponent  "Rc11"
+      DstTerminal   1
+    }
+    Connection {
+      Type          Wire
+      SrcComponent  "Rc11"
+      SrcTerminal   2
+      DstComponent  "L10"
+      DstTerminal   2
+    }
+    Connection {
+      Type          Wire
+      SrcComponent  "Co12"
+      SrcTerminal   2
+      DstComponent  "Rc12"
+      DstTerminal   1
+    }
+    Connection {
+      Type          Wire
+      SrcComponent  "Rc12"
+      SrcTerminal   2
+      DstComponent  "L11"
+      DstTerminal   2
+    }
+    Connection {
+      Type          Wire
+      SrcComponent  "Co13"
+      SrcTerminal   2
+      DstComponent  "Rc13"
+      DstTerminal   1
+    }
+    Connection {
+      Type          Wire
+      SrcComponent  "Rc13"
+      SrcTerminal   2
+      DstComponent  "L12"
+      DstTerminal   2
+    }
+    Connection {
+      Type          Wire
+      SrcComponent  "Co14"
+      SrcTerminal   2
+      DstComponent  "Rc14"
+      DstTerminal   1
+    }
+    Connection {
+      Type          Wire
+      SrcComponent  "Rc14"
+      SrcTerminal   2
+      DstComponent  "L13"
+      DstTerminal   2
+    }
+    Connection {
+      Type          Wire
+      SrcComponent  "Co15"
+      SrcTerminal   2
+      DstComponent  "Rc15"
+      DstTerminal   1
+    }
+    Connection {
+      Type          Wire
+      SrcComponent  "Rc15"
+      SrcTerminal   2
+      DstComponent  "L14"
+      DstTerminal   2
+    }
+    Connection {
+      Type          Signal
+      SrcComponent  "Vm1"
+      SrcTerminal   3
+      DstComponent  "Response"
+      DstTerminal   1
+    }
+    Connection {
+      Type          Wire
+      SrcComponent  "CMC"
+      SrcTerminal   2
+      Points        [1330, 340; 1330, 300]
+      Branch {
+        Points        [1330, 255; 1390, 255]
+        Branch {
+          Points        [1475, 255]
+          Branch {
+            Points        [1550, 255]
+            Branch {
+              Points        [1720, 255]
+              DstComponent  "Vm1"
+              DstTerminal   1
+            }
+            Branch {
+              DstComponent  "Co4"
+              DstTerminal   1
+            }
+          }
+          Branch {
+            DstComponent  "Co3"
+            DstTerminal   1
+          }
+        }
+        Branch {
+          DstComponent  "Co24"
+          DstTerminal   1
+        }
+      }
+      Branch {
+        DstComponent  "C1"
+        DstTerminal   1
+      }
+    }
+    Connection {
+      Type          Wire
+      SrcComponent  "CMC"
+      SrcTerminal   4
+      Points        [1330, 360; 1330, 385]
+      Branch {
+        Points        [1330, 445; 1390, 445]
+        Branch {
+          Points        [1475, 445]
+          Branch {
+            Points        [1550, 445]
+            Branch {
+              Points        [1720, 445]
+              DstComponent  "Vm1"
+              DstTerminal   2
+            }
+            Branch {
+              DstComponent  "L3"
+              DstTerminal   1
+            }
+          }
+          Branch {
+            DstComponent  "L2"
+            DstTerminal   1
+          }
+        }
+        Branch {
+          DstComponent  "L23"
+          DstTerminal   1
+        }
+      }
+      Branch {
+        DstComponent  "C2"
+        DstTerminal   1
+      }
+    }
+    Connection {
+      Type          Wire
+      SrcComponent  "V"
+      SrcTerminal   1
+      DstComponent  "Rdc1"
+      DstTerminal   2
+    }
+    Connection {
+      Type          Wire
+      SrcComponent  "Co24"
+      SrcTerminal   2
+      DstComponent  "Rc24"
+      DstTerminal   1
+    }
+    Connection {
+      Type          Wire
+      SrcComponent  "Rc24"
+      SrcTerminal   2
+      DstComponent  "L23"
+      DstTerminal   2
+    }
+    Connection {
+      Type          Signal
+      SrcComponent  "Perturbation"
+      SrcTerminal   1
+      DstComponent  "V"
+      DstTerminal   3
+    }
+    RectangleAnnotation {
+      Position     [540, 360]
+      Width        680
+      Height       320
+      CornerRadius 3
+      Thickness    2
+      PenColor     4294967040
+      PenAlpha     1
+      BrushColor   39423
+      BrushAlpha   0
+    } 
+    RectangleAnnotation {
+      Position     [1100, 360]
+      Width        280
+      Height       320
+      CornerRadius 3
+      Thickness    2
+      PenColor     4278233855
+      PenAlpha     1
+      BrushColor   0
+      BrushAlpha   0
+    } 
+    RectangleAnnotation {
+      Position     [1500, 360]
+      Width        280
+      Height       320
+      CornerRadius 3
+      Thickness    2
+      PenColor     4283760810
+      PenAlpha     1
+      BrushColor   0
+      BrushAlpha   0
+    } 
+    RectangleAnnotation {
+      Position     [100, 360]
+      Width        120
+      Height       320
+      CornerRadius 3
+      Thickness    2
+      PenColor     4278255360
+      PenAlpha     1
+      BrushColor   0
+      BrushAlpha   0
+    } 
+    RectangleAnnotation {
+      Position     [1740, 360]
+      Width        120
+      Height       320
+      CornerRadius 3
+      Thickness    2
+      PenColor     4278255360
+      PenAlpha     1
+      BrushColor   0
+      BrushAlpha   0
+    } 
+  }
+  Analysis {
+    Type          ACSweep
+    Name          "AC Sweep"
+    ShowLegend    "1"
+    OperatingPoint "1"
+    TimeSpan      "-1"
+    StartTime     "0"
+    Tolerance     "1e-6"
+    MaxIter       "50"
+    FrequencyRange "[10 1e9]"
+    FrequencyScale "2"
+    AdditionalFreqs "[]"
+    AmplitudeRange "1e-1"
+    NumPoints     "10000"
+    Perturbation  "Perturbation"
+    Response      "Response"
+    JacobianPerturbation "1e-6"
+    JacobianCalculation "1"
+    InitCycles    "0"
+    MaxNumberOfThreads "-1"
+  }
+}
+DemoSignature "ES0h70UJr3wIUC2pvPyxlDzTk9mlJS/wcGUwXLfR0HU="
