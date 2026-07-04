@@ -1,5 +1,5 @@
 Plecs {
-  Name          "DCfilter"
+  Name          "DC_filter"
   Version       "4.9"
   CircuitModel  "ContStateSpace"
   StartTime     "0.0"
@@ -70,7 +70,7 @@ Plecs {
       LabelPosition east
       Parameter {
         Variable      "C"
-        Value         "5e-6"
+        Value         "6e-6"
         Show          on
       }
       Parameter {
@@ -89,7 +89,7 @@ Plecs {
       LabelPosition east
       Parameter {
         Variable      "R"
-        Value         "7e-3"
+        Value         "10e-3"
         Show          on
       }
     }
@@ -159,7 +159,7 @@ Plecs {
       LabelPosition east
       Parameter {
         Variable      "L"
-        Value         "10e-9"
+        Value         "9e-9"
         Show          on
       }
       Parameter {
@@ -211,7 +211,7 @@ Plecs {
       LabelPosition east
       Parameter {
         Variable      "L"
-        Value         "31e-9"
+        Value         "25e-9"
         Show          on
       }
       Parameter {
@@ -263,7 +263,7 @@ Plecs {
       LabelPosition east
       Parameter {
         Variable      "L"
-        Value         "31e-9"
+        Value         "25e-9"
         Show          on
       }
       Parameter {
@@ -282,7 +282,7 @@ Plecs {
       LabelPosition east
       Parameter {
         Variable      "C"
-        Value         "5e-6"
+        Value         "6e-6"
         Show          on
       }
       Parameter {
@@ -301,7 +301,7 @@ Plecs {
       LabelPosition east
       Parameter {
         Variable      "R"
-        Value         "7e-3"
+        Value         "10e-3"
         Show          on
       }
     }
@@ -315,7 +315,7 @@ Plecs {
       LabelPosition east
       Parameter {
         Variable      "L"
-        Value         "10e-9"
+        Value         "9e-9"
         Show          on
       }
       Parameter {
@@ -334,7 +334,7 @@ Plecs {
       LabelPosition east
       Parameter {
         Variable      "C"
-        Value         "5e-6"
+        Value         "6e-6"
         Show          on
       }
       Parameter {
@@ -353,7 +353,7 @@ Plecs {
       LabelPosition east
       Parameter {
         Variable      "R"
-        Value         "7e-3"
+        Value         "10e-3"
         Show          on
       }
     }
@@ -367,7 +367,7 @@ Plecs {
       LabelPosition east
       Parameter {
         Variable      "L"
-        Value         "10e-9"
+        Value         "9e-9"
         Show          on
       }
       Parameter {
@@ -386,7 +386,7 @@ Plecs {
       LabelPosition east
       Parameter {
         Variable      "C"
-        Value         "5e-6"
+        Value         "6e-6"
         Show          on
       }
       Parameter {
@@ -405,7 +405,7 @@ Plecs {
       LabelPosition east
       Parameter {
         Variable      "R"
-        Value         "7e-3"
+        Value         "10e-3"
         Show          on
       }
     }
@@ -419,7 +419,7 @@ Plecs {
       LabelPosition east
       Parameter {
         Variable      "L"
-        Value         "10e-9"
+        Value         "9e-9"
         Show          on
       }
       Parameter {
@@ -438,7 +438,7 @@ Plecs {
       LabelPosition east
       Parameter {
         Variable      "C"
-        Value         "0.25e-6"
+        Value         "3e-6"
         Show          on
       }
       Parameter {
@@ -457,7 +457,7 @@ Plecs {
       LabelPosition east
       Parameter {
         Variable      "R"
-        Value         "43.5e-3"
+        Value         "50e-3"
         Show          on
       }
     }
@@ -471,7 +471,7 @@ Plecs {
       LabelPosition east
       Parameter {
         Variable      "L"
-        Value         "2.5e-9"
+        Value         "2e-9"
         Show          on
       }
       Parameter {
@@ -490,7 +490,7 @@ Plecs {
       LabelPosition east
       Parameter {
         Variable      "C"
-        Value         "0.25e-6"
+        Value         "3e-6"
         Show          on
       }
       Parameter {
@@ -509,7 +509,7 @@ Plecs {
       LabelPosition east
       Parameter {
         Variable      "R"
-        Value         "43.5e-3"
+        Value         "50e-3"
         Show          on
       }
     }
@@ -523,7 +523,7 @@ Plecs {
       LabelPosition east
       Parameter {
         Variable      "L"
-        Value         "2.5e-9"
+        Value         "2e-9"
         Show          on
       }
       Parameter {
@@ -542,7 +542,7 @@ Plecs {
       LabelPosition east
       Parameter {
         Variable      "C"
-        Value         "0.25e-6"
+        Value         "3e-6"
         Show          on
       }
       Parameter {
@@ -561,7 +561,7 @@ Plecs {
       LabelPosition east
       Parameter {
         Variable      "R"
-        Value         "43.5e-3"
+        Value         "50e-3"
         Show          on
       }
     }
@@ -575,7 +575,7 @@ Plecs {
       LabelPosition east
       Parameter {
         Variable      "L"
-        Value         "2.5e-9"
+        Value         "2e-9"
         Show          on
       }
       Parameter {
@@ -594,7 +594,7 @@ Plecs {
       LabelPosition east
       Parameter {
         Variable      "C"
-        Value         "0.25e-6"
+        Value         "3e-6"
         Show          on
       }
       Parameter {
@@ -613,7 +613,7 @@ Plecs {
       LabelPosition east
       Parameter {
         Variable      "R"
-        Value         "43.5e-3"
+        Value         "50e-3"
         Show          on
       }
     }
@@ -627,7 +627,7 @@ Plecs {
       LabelPosition east
       Parameter {
         Variable      "L"
-        Value         "2.5e-9"
+        Value         "2e-9"
         Show          on
       }
       Parameter {
@@ -646,7 +646,7 @@ Plecs {
       LabelPosition east
       Parameter {
         Variable      "C"
-        Value         "0.25e-6"
+        Value         "3e-6"
         Show          on
       }
       Parameter {
@@ -665,7 +665,7 @@ Plecs {
       LabelPosition east
       Parameter {
         Variable      "R"
-        Value         "43.5e-3"
+        Value         "50e-3"
         Show          on
       }
     }
@@ -679,7 +679,7 @@ Plecs {
       LabelPosition east
       Parameter {
         Variable      "L"
-        Value         "2.5e-9"
+        Value         "2e-9"
         Show          on
       }
       Parameter {
@@ -698,7 +698,7 @@ Plecs {
       LabelPosition east
       Parameter {
         Variable      "C"
-        Value         "0.25e-6"
+        Value         "3e-6"
         Show          on
       }
       Parameter {
@@ -717,7 +717,7 @@ Plecs {
       LabelPosition east
       Parameter {
         Variable      "R"
-        Value         "43.5e-3"
+        Value         "50e-3"
         Show          on
       }
     }
@@ -731,7 +731,7 @@ Plecs {
       LabelPosition east
       Parameter {
         Variable      "L"
-        Value         "2.5e-9"
+        Value         "2e-9"
         Show          on
       }
       Parameter {
@@ -750,7 +750,7 @@ Plecs {
       LabelPosition east
       Parameter {
         Variable      "C"
-        Value         "0.25e-6"
+        Value         "3e-6"
         Show          on
       }
       Parameter {
@@ -769,7 +769,7 @@ Plecs {
       LabelPosition east
       Parameter {
         Variable      "R"
-        Value         "43.5e-3"
+        Value         "50e-3"
         Show          on
       }
     }
@@ -783,7 +783,7 @@ Plecs {
       LabelPosition east
       Parameter {
         Variable      "L"
-        Value         "2.5e-9"
+        Value         "2e-9"
         Show          on
       }
       Parameter {
@@ -802,7 +802,7 @@ Plecs {
       LabelPosition east
       Parameter {
         Variable      "C"
-        Value         "0.25e-6"
+        Value         "3e-6"
         Show          on
       }
       Parameter {
@@ -821,7 +821,7 @@ Plecs {
       LabelPosition east
       Parameter {
         Variable      "R"
-        Value         "43.5e-3"
+        Value         "50e-3"
         Show          on
       }
     }
@@ -835,7 +835,7 @@ Plecs {
       LabelPosition east
       Parameter {
         Variable      "L"
-        Value         "2.5e-9"
+        Value         "2e-9"
         Show          on
       }
       Parameter {
@@ -958,25 +958,6 @@ Plecs {
       }
     }
     Component {
-      Type          Capacitor
-      Name          "Co24"
-      Show          off
-      Position      [1390, 295]
-      Direction     up
-      Flipped       off
-      LabelPosition east
-      Parameter {
-        Variable      "C"
-        Value         "0.25e-6"
-        Show          on
-      }
-      Parameter {
-        Variable      "v_init"
-        Value         "0"
-        Show          off
-      }
-    }
-    Component {
       Type          Resistor
       Name          "Rc24"
       Show          off
@@ -986,7 +967,7 @@ Plecs {
       LabelPosition east
       Parameter {
         Variable      "R"
-        Value         "43.5e-3"
+        Value         "50e-3"
         Show          on
       }
     }
@@ -1000,11 +981,30 @@ Plecs {
       LabelPosition east
       Parameter {
         Variable      "L"
-        Value         "2.5e-9"
+        Value         "2e-9"
         Show          on
       }
       Parameter {
         Variable      "i_init"
+        Value         "0"
+        Show          off
+      }
+    }
+    Component {
+      Type          Capacitor
+      Name          "Co16"
+      Show          off
+      Position      [1390, 295]
+      Direction     up
+      Flipped       off
+      LabelPosition east
+      Parameter {
+        Variable      "C"
+        Value         "3e-6"
+        Show          on
+      }
+      Parameter {
+        Variable      "v_init"
         Value         "0"
         Show          off
       }
@@ -1439,7 +1439,7 @@ Plecs {
           }
         }
         Branch {
-          DstComponent  "Co24"
+          DstComponent  "Co16"
           DstTerminal   1
         }
       }
@@ -1493,7 +1493,7 @@ Plecs {
     }
     Connection {
       Type          Wire
-      SrcComponent  "Co24"
+      SrcComponent  "Co16"
       SrcTerminal   2
       DstComponent  "Rc24"
       DstTerminal   1
@@ -1590,4 +1590,4 @@ Plecs {
     MaxNumberOfThreads "-1"
   }
 }
-DemoSignature "ES0h70UJr3wIUC2pvPyxlDzTk9mlJS/wcGUwXLfR0HU="
+DemoSignature "IaVNWe3bCzP0AjR9OfGozkr42Csf+lb0pIYl1n4rgVc="
