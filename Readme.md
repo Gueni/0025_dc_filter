@@ -4,26 +4,6 @@
 # DC-Side EMI Filter for an Automotive On-Board Charger (OBC)
 
 
-
-## Table of Contents
-
-1. [System Context ](#1-system-context)
-2. [How This Circuit Was Actually Read](#2-how-this-circuit-was-actually-read)
-3. [Overall Topology — The Real Circuit](#3-overall-topology)
-4. [The Input Capacitor Cluster (12 cells)](#4-the-input-capacitor-cluster)
-5. [The Common-Mode Choke (CMC)](#5-the-common-mode-choke)
-6. [The Output Capacitor Cluster (3 cells)](#6-the-output-capacitor-cluster)
-7. [How the Bode Plot Was Generated](#7-the-plecs-simulation-setup)
-8. [Why Real Capacitors Are Modeled as RLC](#8-why-real-capacitors-are-modeled-as-rlc)
-9. [The Transfer Function, Derived and Verified](#9-the-transfer-function-derived-and-verified)
-10. [Bode Plot, Zone by Zone (Corrected)](#10-bode-plot-zone-by-zone)
-11. [What This Sweep Does NOT Show You](#11-the-most-important-design-insight)
-12. [EMC Compliance Context — CISPR 25](#12-emc-compliance-context)
-13. [Practical Design Takeaways](#13-practical-design-takeaways)
-14. [Complete Component Value Tables](#14-complete-component-value-tables)
-15. [Glossary](#15-glossary)
-
-
 ## 1. System Context
 
 ### What is an OBC?
@@ -54,22 +34,9 @@ The LLC resonant converter switches at high frequency (commonly 100 kHz–500 kH
 Both must be attenuated before the DC leaves the module and heads to the battery, to satisfy the automotive conducted-emissions standard **CISPR 25**.
 
 
-
-## 2. How This Circuit Was Actually Read
-
-Rather than only reading the exported schematic image, the underlying `DC_filter.plecs` file was parsed directly, because PLECS text files store the exact component values, positions, and — critically — the exact wiring (`Connection` blocks), which is the only way to know for certain which nodes are actually the same electrical node. Three findings from that file materially change the story compared to a first glance at the picture:
-
-1. **There is only one voltage source, not two.** The little "AC current sources" described in a first-pass reading of the picture are actually a single `VoltageSource` plus a `SmallSignalPerturbation` block — PLECS's standard pair for linearized small-signal AC-sweep analysis.
-2. **There is only one bank of 8 small capacitors, not two mirrored 8-cap "rail" banks.** All 12 input-side RLC branches (8 of one value, 4 of another) land on the *same two electrical buses* — there's no series impedance separating them into two different "rails."
-3. **The two small capacitors flanking the CMC (`C1`, `C2`, 3 pF each) are wired directly across each CMC winding's own two terminals** — they are **not** Y-capacitors to chassis ground. There is, in fact, **no ground node anywhere in this model**. It is a fully floating, balanced, two-conductor network from source to load.
-
-These corrections matter — they change which components actually shape the plotted curve (see [Section 11](#11-the-most-important-design-insight)).
-
-
-
 ## 3. Overall Topology
 
-Reading the schematic left to right, and confirmed by tracing every `Connection` in the `.plecs` file, the real structure is:
+Reading the schematic left to right:
 
 ```mermaid
 flowchart LR
@@ -115,7 +82,6 @@ flowchart LR
 - **Top conductor** and **bottom conductor** together form a single floating differential pair (think: DC+ and DC−, or "line" and "return").
 - Every RLC "cell" in both clusters is wired **across** the two conductors (a shunt / X-capacitor), not in series along one conductor.
 - The **only series element in the entire path** is the CMC — one winding sits in the top conductor, the other winding sits in the bottom conductor, and they are magnetically coupled.
-- `Rdc1` (1 µΩ) is a token series resistor at the source. It is **not a real physical resistor in the OBC** — this is the classic PLECS trick of inserting a vanishingly small resistance in series with an ideal voltage source purely so the state-space solver has a well-posed system (an ideal voltage source directly across a capacitor bank is a numerically stiff/degenerate configuration). At 1 µΩ it is 4–8 orders of magnitude smaller than anything else in the circuit across the whole 10 Hz–1 GHz sweep, so it has no discernible effect on the results — but it *is* the reason the input capacitor cluster behaves the way it does (see Section 11).
 
 
 
