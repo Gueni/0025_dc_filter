@@ -23,13 +23,15 @@
 14. [Complete Component Value Tables](#14-complete-component-value-tables)
 15. [Glossary](#15-glossary)
 
----
 
 ## 1. System Context
 
 ### What is an OBC?
 
 An **On-Board Charger (OBC)** is the power-electronics box inside an EV that turns AC wall/charging-station power into the DC voltage needed to charge the traction battery (400 V or 800 V class packs are typical).
+
+
+
 ```mermaid
 flowchart LR
     AC["AC Grid<br/>230 V / 50 Hz"] --> EMI["EMI Filter<br/>(AC side)"]
@@ -41,6 +43,7 @@ flowchart LR
     style DCF fill:#ffe28a,stroke:#333,stroke-width:2px
 ```
 
+
 ### Why does the LLC output need its own filter?
 
 The LLC resonant converter switches at high frequency (commonly 100 kHz–500 kHz). Even after the transformer and rectification, the DC bus carries:
@@ -50,7 +53,7 @@ The LLC resonant converter switches at high frequency (commonly 100 kHz–500 kH
 
 Both must be attenuated before the DC leaves the module and heads to the battery, to satisfy the automotive conducted-emissions standard **CISPR 25**.
 
----
+
 
 ## 2. How This Circuit Was Actually Read
 
@@ -62,7 +65,7 @@ Rather than only reading the exported schematic image, the underlying `DC_filter
 
 These corrections matter — they change which components actually shape the plotted curve (see [Section 11](#11-the-most-important-design-insight)).
 
----
+
 
 ## 3. Overall Topology
 
@@ -114,7 +117,7 @@ flowchart LR
 - The **only series element in the entire path** is the CMC — one winding sits in the top conductor, the other winding sits in the bottom conductor, and they are magnetically coupled.
 - `Rdc1` (1 µΩ) is a token series resistor at the source. It is **not a real physical resistor in the OBC** — this is the classic PLECS trick of inserting a vanishingly small resistance in series with an ideal voltage source purely so the state-space solver has a well-posed system (an ideal voltage source directly across a capacitor bank is a numerically stiff/degenerate configuration). At 1 µΩ it is 4–8 orders of magnitude smaller than anything else in the circuit across the whole 10 Hz–1 GHz sweep, so it has no discernible effect on the results — but it *is* the reason the input capacitor cluster behaves the way it does (see Section 11).
 
----
+
 
 ## 4. The Input Capacitor Cluster
 
@@ -123,7 +126,7 @@ flowchart LR
 This cluster represents two things placed physically close together on the DC bus, lumped into one simulation node because there's no meaningful impedance between them on a PCB/bus-bar scale:
 
 | Sub-group | Cells | C / cell | R / cell (ESR) | L / cell (ESL) | Represents |
-|---|---|---|---|---|---|
+|||||||
 | LLC output capacitors | 8 | 0.25 µF | 43.5 mΩ | 2.5 nH | Bulk MLCC/film caps directly on the LLC's rectified output |
 | First DC filter stage | 4 | 5 µF | 7 mΩ | 10 nH | Dedicated larger-value filter caps, first EMI attenuation stage |
 
@@ -154,7 +157,7 @@ f_SRF = 1 / (2π√(L·C)) = 1 / (2π√(2.5e-9 × 0.25e-6)) ≈ 6.37 MHz
 
 Above 6.37 MHz, each of these small capacitors starts to look inductive rather than capacitive.
 
----
+
 
 ## 5. The Common-Mode Choke
 
@@ -163,7 +166,7 @@ Above 6.37 MHz, each of these small capacitors starts to look inductive rather t
 A common-mode choke is two windings, one per conductor, wound on a shared magnetic core so that:
 
 | Current type | What happens in the core | Impedance seen |
-|---|---|---|
+||||
 | **Differential** (equal & opposite currents on the two conductors — the "useful" DC/ripple current) | The two windings' fluxes largely **cancel** | Very low (only the *leakage* inductance) |
 | **Common-mode** (equal, same-direction currents on both conductors, e.g. noise returning via chassis) | The two windings' fluxes **add** | Very high (full self-inductance) |
 
@@ -209,14 +212,14 @@ f_SRF(CMC, DM leakage path) = 1 / (2π√(L_leak × C)) ≈ 1 / (2π√(11.25e-6
 
 **This is the real cause of the deepest notch in the Bode plot** (see Section 10) — around this frequency the choke's own parasitic capacitance and its leakage inductance anti-resonate, momentarily presenting a *very large* series impedance to the differential path, which produces the sharpest attenuation feature in the whole curve. Above that frequency, the parasitic capacitance takes over and the choke's impedance *collapses*, which is why filtering performance falls apart above ~30–50 MHz.
 
----
+
 
 ## 6. The Output Capacitor Cluster
 
 Three RLC cells, all wired directly across the two output conductors, right where `Vm1` measures the output voltage:
 
 | Cell | C | R (ESR) | L (ESL) | Individual resonance |
-|---|---|---|---|---|
+||||||
 | Cell "Co24" | 0.25 µF | 43.5 mΩ | 2.5 nH | 6.37 MHz |
 | Cell "Co3" | 4.7 µF | 4.7 mΩ | 31 nH | — |
 | Cell "Co4" | 4.7 µF | 4.7 mΩ | 31 nH | — |
@@ -233,14 +236,14 @@ f_res           = 1 / (2π√(15.5e-9 × 9.4e-6)) ≈ 417 kHz
 
 Total output-side capacitance across all three cells: `0.25 + 4.7 + 4.7 = 9.65 µF`.
 
----
+
 
 ## 7. The PLECS Simulation Setup
 
 Straight from the `Analysis` block in the `.plecs` file:
 
 | Parameter | Value | Meaning |
-|---|---|---|
+||||
 | Analysis type | `ACSweep` | Linearized small-signal frequency sweep, not a literal sine-by-sine simulation |
 | Frequency range | 10 Hz – 1 GHz | Matches the x-axis of the Bode plot exactly |
 | Frequency scale | Logarithmic | |
@@ -253,7 +256,7 @@ PLECS's AC-sweep feature works by finding the DC operating point, linearizing th
 
 **What this means physically:** the source `V` behaves as an ideal AC voltage source (with the negligible 1 µΩ `Rdc1` in series) driving the input bus, and `Vm1` is an ideal (infinite input impedance) voltmeter at the output — it does not load the circuit at all. The Bode plot is therefore exactly `H(f) = V_out / V_in` for a voltage-driven, unloaded-output network.
 
----
+
 
 ## 8. Why Real Capacitors Are Modeled as RLC, Not Ideal C
 
@@ -271,7 +274,7 @@ This means every real capacitor has three regimes:
 
 Modeling every capacitor bank as N parallel RLC cells (rather than one lumped ideal capacitor) is what allows this simulation to correctly predict the notches, the anti-resonance peak, and the eventual loss of high-frequency performance — none of which an ideal-capacitor model could produce. This is standard, necessary practice for any EMI filter simulation meant to be trusted against real hardware measurements or a network analyzer sweep.
 
----
+
 
 ## 9. The Transfer Function, Derived and Verified
 
@@ -293,7 +296,7 @@ H(f) ≈ Z_out(f) / (Z_CMC(f) + Z_out(f))
 To check this understanding (and to pin down accurate numbers instead of hand-waving), the full circuit — including the coupled-inductor equations for the CMC, both parasitic capacitors, and both capacitor clusters — was rebuilt as a 5-unknown nodal-analysis linear system and solved numerically at 2,000 log-spaced frequency points in Python, from the exact component values in the `.plecs` file. The result reproduces the provided Bode plot's shape essentially feature-for-feature:
 
 | Feature | Reconstructed simulation | Provided Bode plot (visual) |
-|---|---|---|
+||||
 | Passband | 0 dB, 0° | 0 dB, 0° |
 | Anti-resonance peak | **+45.2 dB at 10.8 kHz** | ~+45–47 dB at ~10 kHz |
 | First deep notch | **−87.9 dB at 419 kHz** | Deep notch approaching −90 dB in the same decade |
@@ -303,7 +306,7 @@ To check this understanding (and to pin down accurate numbers instead of hand-wa
 
 This level of agreement, built from first principles and the raw netlist, confirms both the component values extracted from the file and the physical explanation given for each feature below.
 
----
+
 
 ## 10. Bode Plot, Zone by Zone
 
@@ -358,7 +361,7 @@ Past its own self-resonance, the CMC's parasitic capacitance takes over and its 
 ### Summary Table
 
 | Frequency | Feature | Magnitude | Root Cause (verified) |
-|---|---|---|---|
+|||||
 | 10 Hz – 5 kHz | Passband | 0 dB | Filter transparent |
 | ~10.8 kHz | **Anti-resonance peak** | **+45 dB** | CMC leakage inductance (22.5 µH) resonating in series with total output capacitance (9.65 µF) |
 | ~420 kHz | 1st deep notch | ~−88 dB | Co3∥Co4 (4.7 µF/31 nH) minimum-impedance resonance |
@@ -367,7 +370,7 @@ Past its own self-resonance, the CMC's parasitic capacitance takes over and its 
 | ~27–28 MHz | **Deepest notch** | **~−124 dB** | CMC's own winding self-resonance (leakage L vs. 3 pF parasitic C) |
 | > 50 MHz | Rising floor | increasing | Full parasitic (ESL/self-capacitance) dominance everywhere |
 
----
+
 
 ## 11. The Most Important Design Insight
 
@@ -382,14 +385,14 @@ This doesn't mean those 12 capacitors are pointless in the real filter — far f
 
 If a design review needs to justify the value of those 12 input capacitors from this simulation, the AC-sweep should be re-run with the excitation changed to a current perturbation, or with `Rdc1` replaced by a value representing the LLC output stage's real impedance at these frequencies.
 
----
+
 
 ## 12. EMC Compliance Context — CISPR 25
 
 **CISPR 25** is the IEC/CISPR standard governing conducted and radiated emissions from components used in vehicles, chosen so they don't interfere with the vehicle's own radio receivers.
 
 | Class | Typical application | Strictness |
-|---|---|---|
+||||
 | Class 1 | Commercial vehicles | Least strict |
 | Class 3 | Standard passenger cars | Mid-range |
 | Class 5 | Premium passenger vehicles | Strictest |
@@ -397,7 +400,7 @@ If a design review needs to justify the value of those 12 input capacitors from 
 Conducted emissions are measured (via a LISN — Line Impedance Stabilization Network) across 150 kHz – 108 MHz. Key broadcast bands inside that window that filter designers pay particular attention to:
 
 | Band | Frequency | Service |
-|---|---|---|
+||||
 | LW | 150–300 kHz | AM Long Wave |
 | MW | 530 kHz – 1.8 MHz | AM Medium Wave |
 | SW | 5.9–6.2 MHz | AM Short Wave |
@@ -406,13 +409,13 @@ Conducted emissions are measured (via a LISN — Line Impedance Stabilization Ne
 Mapping this filter's measured response onto those bands:
 
 | Band | Coverage in this filter | Rough attenuation |
-|---|---|---|
+||||
 | LW (150–300 kHz) | Rising toward the 420 kHz notch | Improving, tens of dB |
 | MW (530 kHz–1.8 MHz) | Just past the deepest local notch, into the recovery bump | Strong, but recovering |
 | SW (5.9–6.2 MHz) | Near the Co24 SRF / secondary dip | Strong |
 | FM (76–108 MHz) | Above the CMC's own self-resonance | **Degraded — needs supplementary filtering** |
 
----
+
 
 ## 13. Practical Design Takeaways
 
@@ -422,14 +425,14 @@ Mapping this filter's measured response onto those bands:
 4. **Watch what your source impedance is doing.** An AC-sweep with a near-ideal voltage source (as here) is blind to the input-side capacitor bank's contribution. Different excitation (current source, or realistic source impedance) is needed to evaluate that part of the design.
 5. **The filter is doing its best work in the hundreds-of-kHz to tens-of-MHz range**, exactly where the bulk of LLC switching harmonics typically live — and is intentionally weaker right at the FM band, where enclosure shielding and ferrite beads are the normal, expected supplementary measures.
 
----
+
 
 ## 14. Complete Component Value Tables
 
 ### Input capacitor cluster (12 cells, all directly across the two conductors)
 
 | Group | # cells | C/cell | R/cell (ESR) | L/cell (ESL) | Individual SRF |
-|---|---|---|---|---|---|
+|||||||
 | LLC output caps | 8 | 0.25 µF | 43.5 mΩ | 2.5 nH | 6.37 MHz |
 | First DC filter stage | 4 | 5 µF | 7 mΩ | 10 nH | 22.5 kHz* |
 
@@ -438,7 +441,7 @@ Mapping this filter's measured response onto those bands:
 ### Common-Mode Choke
 
 | Parameter | Value |
-|---|---|
+|||
 | Self-inductance per winding (L) | 3 mH |
 | Winding resistance per winding (R) | 3 mΩ |
 | Coupling coefficient (k) | 0.99625 |
@@ -451,7 +454,7 @@ Mapping this filter's measured response onto those bands:
 ### Output capacitor cluster (3 cells)
 
 | Cell | C | R (ESR) | L (ESL) | Notes |
-|---|---|---|---|---|
+||||||
 | Co24 | 0.25 µF | 43.5 mΩ | 2.5 nH | Same spec as LLC output caps; f_res ≈ 6.37 MHz |
 | Co3 | 4.7 µF | 4.7 mΩ | 31 nH | Paired with Co4 |
 | Co4 | 4.7 µF | 4.7 mΩ | 31 nH | Identical to Co3 |
@@ -460,19 +463,19 @@ Mapping this filter's measured response onto those bands:
 ### Analysis (AC Sweep) settings
 
 | Parameter | Value |
-|---|---|
+|||
 | Frequency range | 10 Hz – 1 GHz |
 | Scale | Logarithmic |
 | Points | 10,000 |
 | Perturbation amplitude | 0.1 (10%) |
 | Method | Linearized small-signal AC sweep |
 
----
+
 
 ## 15. Glossary
 
 | Term | Definition |
-|---|---|
+|||
 | **DM noise** | Differential Mode — noise/current flowing line-to-line, in the "useful" signal path |
 | **CM noise** | Common Mode — noise flowing on both conductors in the same direction, returning via chassis/ground |
 | **ESR** | Equivalent Series Resistance — the real resistive loss inside a capacitor |
@@ -491,5 +494,5 @@ Mapping this filter's measured response onto those bands:
 | **AC Sweep (PLECS)** | A linearized small-signal frequency-response analysis feature in PLECS, using a `SmallSignalPerturbation`/`SmallSignalResponse` block pair |
 | **PLECS** | Piecewise Linear Electrical Circuit Simulation — power-electronics simulator by Plexim |
 
----
+
 
