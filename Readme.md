@@ -32,8 +32,8 @@ flowchart LR
 
     subgraph IN["Input Capacitor Cluster (12 cells, X-type)"]
         direction TB
-        IN1["8× LLC output caps<br/>0.25 µF / 43.5 mΩ / 2.5 nH"]
-        IN2["4× 1st filter stage caps<br/>5 µF / 7 mΩ / 10 nH"]
+        IN1["8× LLC output caps<br/>3µF / 50mΩ / 2e-9H"]
+        IN2["4× 1st filter stage caps<br/>6 µF / 7 mΩ / 9e-9H"]
     end
 
     subgraph CMC["Common-Mode Choke"]
@@ -47,9 +47,9 @@ flowchart LR
 
     subgraph OUT["Output Capacitor Cluster (3 cells, X-type)"]
         direction TB
-        O1["Co24: 0.25 µF / 43.5 mΩ / 2.5 nH"]
-        O2["Co3: 4.7 µF / 4.7 mΩ / 31 nH"]
-        O3["Co4: 4.7 µF / 4.7 mΩ / 31 nH"]
+        O1["Co24: 3µF / 50mΩ / 2e-9H"]
+        O2["Co3: 4.7 µF / 4.7 mΩ / 25 nH"]
+        O3["Co4: 4.7 µF / 4.7 mΩ / 25 nH"]
     end
 
     VM["Vm1<br/>(ideal voltmeter)"]
@@ -75,15 +75,15 @@ This cluster represents two things placed physically close together on the DC bu
 
 | Sub-group | Cells | C/cell | ESR/cell | ESL/cell | Represents |
 |-----------|-------|--------|----------|----------|------------|
-| LLC output capacitors | 8 | 3 µF | 43.5 mΩ | 2.5 nH | Bulk MLCC/film caps directly on the LLC's rectified output |
-| First DC filter stage | 4 | 5 µF | 7 mΩ | 10 nH | Dedicated larger-value filter caps, first EMI attenuation stage |
+| LLC output capacitors | 8 | 3 µF | 50mΩ | 2e-9H | Bulk MLCC/film caps directly on the LLC's rectified output |
+| First DC filter stage | 4 | 6 µF | 7 mΩ | 9e-9H | Dedicated larger-value filter caps, first EMI attenuation stage |
 
 **Combined (all 12 in parallel):**
 
 ```
-C_eff   ≈ 8×0.25 µF + 4×5 µF   = 22.0 µF
-1/R_eff = 8/43.5 mΩ + 4/7 mΩ   →  R_eff ≈ 3.94 mΩ
-1/L_eff = 8/2.5 nH + 4/10 nH   →  L_eff ≈ 0.192 nH
+C_eff   ≈ 8×3µF + 4×6 µF   = 22.0 µF
+1/R_eff = 8/50mΩ + 4/7 mΩ   →  R_eff ≈ 3.94 mΩ
+1/L_eff = 8/2e-9H + 4/9e-9H   →  L_eff ≈ 0.192 nH
 ```
 
  Why spread capacitance across many parallel cells?
@@ -160,21 +160,21 @@ Three RLC cells, all wired directly across the two output conductors, right wher
 
 | Cell | C | ESR | ESL | Individual SRF |
 |------|---|-----|-----|----------------|
-| Co24 | 0.25 µF | 43.5 mΩ | 2.5 nH | 6.37 MHz |
-| Co3 | 4.7 µF | 4.7 mΩ | 31 nH | — |
-| Co4 | 4.7 µF | 4.7 mΩ | 31 nH | — |
+| Co24 | 3µF | 50mΩ | 2e-9H | 6.37 MHz |
+| Co3 | 4.7 µF | 4.7 mΩ | 25 nH | — |
+| Co4 | 4.7 µF | 4.7 mΩ | 25 nH | — |
 
 Co3 and Co4 are identical and effectively in parallel:
 
 ```
 C_eff (Co3∥Co4) = 9.4 µF        
-L_eff           = 31 nH / 2                   = 15.5 nH
-f_res           = 1 / (2π√(15.5e-9 × 9.4e-6)) ≈ 417 kHz
+L_eff           = 25 nH / 2                   = 12.5 nH
+f_res           = 1 / (2π√(12.5e-9 × 9.4e-6)) ≈ 417 kHz
 ```
 
 *(The previous draft computed this as ~13.2 MHz — that was an arithmetic slip; ~417 kHz is correct and, reassuringly, lines up almost exactly with a deep notch actually visible in the Bode plot around 400–450 kHz — see Section 10.)*
 
-Total output-side capacitance across all three cells: `0.25 + 4.7 + 4.7 = 9.65 µF`.
+Total output-side capacitance across all three cells: `0.25 + 4.7 + 4.7 = 9.66 µF`.
 
 
 ### Why Real Capacitors Are Modeled as RLC, Not Ideal C
@@ -222,7 +222,7 @@ At these frequencies every capacitor's impedance is enormous and every inductor'
 This is the single most important feature in the plot, and now has a precise, verified cause:
 
 ```
-f_peak = 1 / (2π√(L_leak(DM) × C_out,total)) = 1 / (2π√(22.5 µH × 9.65 µF)) ≈ 10.8 kHz
+f_peak = 1 / (2π√(L_leak(DM) × C_out,total)) = 1 / (2π√(22.5 µH × 9.66 µF)) ≈ 10.8 kHz
 ```
 
 This is a **series LC resonance between the CMC's differential-mode leakage inductance and the total output capacitance**. At this one frequency, the series combination `Z_CMC + Z_out` in the voltage-divider denominator becomes very small (limited only by the small series resistances), so `H(f)` spikes well above 0 dB — the filter *amplifies* rather than attenuates at this exact frequency.
@@ -238,7 +238,7 @@ This is a **series LC resonance between the CMC's differential-mode leakage indu
 #### Zone 3 — ~15 kHz to ~1 MHz: First Deep Notch (~−88 dB at ~420 kHz)
 ---
 
-Caused by the Co3/Co4 pair (4.7 µF, 31 nH each) resonating together at ~417 kHz, which is exactly the frequency at which the output cluster's own impedance `Z_out(f)` hits its minimum (limited by their 4.7 mΩ ESR). Per the voltage-divider relation, a minimum in `Z_out` produces a minimum (notch) in `H(f)`.
+Caused by the Co3/Co4 pair (4.7 µF, 25 nH each) resonating together at ~417 kHz, which is exactly the frequency at which the output cluster's own impedance `Z_out(f)` hits its minimum (limited by their 4.7 mΩ ESR). Per the voltage-divider relation, a minimum in `Z_out` produces a minimum (notch) in `H(f)`.
 
 A −88 dB notch corresponds to roughly 25,000× attenuation in voltage amplitude — this is the network's primary working region for suppressing switching-frequency harmonics in the hundreds-of-kHz range.
 
@@ -250,7 +250,7 @@ Between the Co3/Co4 resonance (~420 kHz) and the Co24 cell's own resonance (~6.3
 #### Zone 5 — ~5–15 MHz: Secondary Dip
 ---
 
-As the Co24 cell (0.25 µF / 2.5 nH) crosses its own 6.37 MHz SRF and starts going inductive, `Z_out` dips again, producing the secondary notch region seen just above the recovery bump.
+As the Co24 cell (3µF / 2e-9H) crosses its own 6.37 MHz SRF and starts going inductive, `Z_out` dips again, producing the secondary notch region seen just above the recovery bump.
 
 #### Zone 6 — ~15–50 MHz: The Deepest Notch (~−124 dB at ~27.5 MHz)
 ---
@@ -271,10 +271,10 @@ Past its own self-resonance, the CMC's parasitic capacitance takes over and its 
 | Frequency | Feature | Magnitude | Root Cause (verified) |
 |-----------|---------|-----------|-----------------------|
 | 10 Hz – 5 kHz | Passband | 0 dB | Filter transparent |
-| ~10.8 kHz | **Anti-resonance peak** | **+45 dB** | CMC leakage inductance (22.5 µH) resonating in series with total output capacitance (9.65 µF) |
-| ~420 kHz | 1st deep notch | ~−88 dB | Co3∥Co4 (4.7 µF/31 nH) minimum-impedance resonance |
+| ~10.8 kHz | **Anti-resonance peak** | **+45 dB** | CMC leakage inductance (22.5 µH) resonating in series with total output capacitance (9.66 µF) |
+| ~420 kHz | 1st deep notch | ~−88 dB | Co3∥Co4 (4.7 µF/25 nH) minimum-impedance resonance |
 | ~1–5 MHz | Partial recovery | rising | Anti-resonance between the two output-cluster branch resonances |
-| ~6–7 MHz | 2nd dip | ~−87 dB | Co24 cell (0.25 µF/2.5 nH) crossing its own 6.37 MHz SRF |
+| ~6–7 MHz | 2nd dip | ~−87 dB | Co24 cell (3µF/2e-9H) crossing its own 6.37 MHz SRF |
 | ~27–28 MHz | **Deepest notch** | **~−124 dB** | CMC's own winding self-resonance (leakage L vs. 3 pF parasitic C) |
 | > 50 MHz | Rising floor | increasing | Full parasitic (ESL/self-capacitance) dominance everywhere |
 
@@ -339,10 +339,10 @@ Mapping this filter's measured response onto those bands:
 
 | Group | # cells | C/cell | ESR/cell | ESL/cell | Individual SRF |
 |-------|---------|--------|----------|----------|----------------|
-| LLC output caps | 8 | 0.25 µF | 43.5 mΩ | 2.5 nH | 6.37 MHz |
-| First DC filter stage | 4 | 5 µF | 7 mΩ | 10 nH | 22.5 kHz* |
+| LLC output caps | 8 | 3µF | 50mΩ | 2e-9H | 6.37 MHz |
+| First DC filter stage | 4 | 6 µF | 7 mΩ | 9e-9H | 22.5 kHz* |
 
-\* *This is the SRF of an isolated 5 µF/10 nH cell — a useful reference value, though (per Section 11) it does not directly shape the plotted transfer function, since this whole cluster sits across the source.*
+\* *This is the SRF of an isolated 6 µF/9e-9H cell — a useful reference value, though (per Section 11) it does not directly shape the plotted transfer function, since this whole cluster sits across the source.*
 
 ### Common-Mode Choke
 
@@ -361,10 +361,10 @@ Mapping this filter's measured response onto those bands:
 
 | Cell | C | ESR | ESL | Notes |
 |------|---|-----|-----|-------|
-| Co24 | 0.25 µF | 43.5 mΩ | 2.5 nH | Same spec as LLC output caps; f_res ≈ 6.37 MHz |
-| Co3 | 4.7 µF | 4.7 mΩ | 31 nH | Paired with Co4 |
-| Co4 | 4.7 µF | 4.7 mΩ | 31 nH | Identical to Co3 |
-| **Co3 ∥ Co4 combined** | **9.4 µF** | **2.35 mΩ** | **15.5 nH** | **f_res ≈ 417 kHz** |
+| Co24 | 3µF | 50mΩ | 2e-9H | Same spec as LLC output caps; f_res ≈ 6.37 MHz |
+| Co3 | 4.7 µF | 4.7 mΩ | 25 nH | Paired with Co4 |
+| Co4 | 4.7 µF | 4.7 mΩ | 25 nH | Identical to Co3 |
+| **Co3 ∥ Co4 combined** | **9.4 µF** | **2.35 mΩ** | **12.5 nH** | **f_res ≈ 417 kHz** |
 
 ### Analysis (AC Sweep) settings
 
