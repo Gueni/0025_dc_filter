@@ -64,7 +64,7 @@ Plecs {
       Type          Capacitor
       Name          "Co2"
       Show          off
-      Position      [1170, 295]
+      Position      [690, 300]
       Direction     up
       Flipped       off
       LabelPosition east
@@ -83,7 +83,7 @@ Plecs {
       Type          Resistor
       Name          "Rc2"
       Show          off
-      Position      [1170, 350]
+      Position      [690, 355]
       Direction     up
       Flipped       off
       LabelPosition east
@@ -98,7 +98,7 @@ Plecs {
       SrcComponent  "Components/Electrical/Transformers/Mutual\\nInd. 2"
       Name          "CMC"
       Show          on
-      Position      [1300, 350]
+      Position      [820, 355]
       Direction     right
       Flipped       on
       LabelPosition north
@@ -153,7 +153,7 @@ Plecs {
       Type          Inductor
       Name          "L1"
       Show          off
-      Position      [1170, 410]
+      Position      [690, 415]
       Direction     up
       Flipped       on
       LabelPosition east
@@ -172,7 +172,7 @@ Plecs {
       Type          Capacitor
       Name          "Co3"
       Show          off
-      Position      [1475, 295]
+      Position      [995, 300]
       Direction     up
       Flipped       off
       LabelPosition east
@@ -191,7 +191,7 @@ Plecs {
       Type          Resistor
       Name          "Rc3"
       Show          off
-      Position      [1475, 350]
+      Position      [995, 355]
       Direction     up
       Flipped       off
       LabelPosition east
@@ -205,7 +205,7 @@ Plecs {
       Type          Inductor
       Name          "L2"
       Show          off
-      Position      [1475, 410]
+      Position      [995, 415]
       Direction     up
       Flipped       on
       LabelPosition east
@@ -224,7 +224,7 @@ Plecs {
       Type          Capacitor
       Name          "Co4"
       Show          off
-      Position      [1550, 295]
+      Position      [1070, 300]
       Direction     up
       Flipped       off
       LabelPosition east
@@ -243,7 +243,7 @@ Plecs {
       Type          Resistor
       Name          "Rc4"
       Show          off
-      Position      [1550, 350]
+      Position      [1070, 355]
       Direction     up
       Flipped       off
       LabelPosition east
@@ -257,7 +257,7 @@ Plecs {
       Type          Inductor
       Name          "L3"
       Show          off
-      Position      [1550, 410]
+      Position      [1070, 415]
       Direction     up
       Flipped       on
       LabelPosition east
@@ -276,7 +276,7 @@ Plecs {
       Type          Capacitor
       Name          "Co5"
       Show          off
-      Position      [1105, 295]
+      Position      [625, 300]
       Direction     up
       Flipped       off
       LabelPosition east
@@ -295,7 +295,7 @@ Plecs {
       Type          Resistor
       Name          "Rc5"
       Show          off
-      Position      [1105, 350]
+      Position      [625, 355]
       Direction     up
       Flipped       off
       LabelPosition east
@@ -309,7 +309,7 @@ Plecs {
       Type          Inductor
       Name          "L4"
       Show          off
-      Position      [1105, 410]
+      Position      [625, 415]
       Direction     up
       Flipped       on
       LabelPosition east
@@ -328,7 +328,7 @@ Plecs {
       Type          Capacitor
       Name          "Co6"
       Show          off
-      Position      [1040, 295]
+      Position      [560, 300]
       Direction     up
       Flipped       off
       LabelPosition east
@@ -347,7 +347,7 @@ Plecs {
       Type          Resistor
       Name          "Rc6"
       Show          off
-      Position      [1040, 350]
+      Position      [560, 355]
       Direction     up
       Flipped       off
       LabelPosition east
@@ -361,7 +361,7 @@ Plecs {
       Type          Inductor
       Name          "L5"
       Show          off
-      Position      [1040, 410]
+      Position      [560, 415]
       Direction     up
       Flipped       on
       LabelPosition east
@@ -380,7 +380,7 @@ Plecs {
       Type          Capacitor
       Name          "Co7"
       Show          off
-      Position      [975, 295]
+      Position      [495, 300]
       Direction     up
       Flipped       off
       LabelPosition east
@@ -399,7 +399,7 @@ Plecs {
       Type          Resistor
       Name          "Rc7"
       Show          off
-      Position      [975, 350]
+      Position      [495, 355]
       Direction     up
       Flipped       off
       LabelPosition east
@@ -413,7 +413,7 @@ Plecs {
       Type          Inductor
       Name          "L6"
       Show          off
-      Position      [975, 410]
+      Position      [495, 415]
       Direction     up
       Flipped       on
       LabelPosition east
@@ -429,426 +429,10 @@ Plecs {
       }
     }
     Component {
-      Type          Capacitor
-      Name          "Co8"
-      Show          off
-      Position      [815, 295]
-      Direction     up
-      Flipped       off
-      LabelPosition east
-      Parameter {
-        Variable      "C"
-        Value         "3e-6"
-        Show          on
-      }
-      Parameter {
-        Variable      "v_init"
-        Value         "0"
-        Show          off
-      }
-    }
-    Component {
-      Type          Resistor
-      Name          "Rc8"
-      Show          off
-      Position      [815, 350]
-      Direction     up
-      Flipped       off
-      LabelPosition east
-      Parameter {
-        Variable      "R"
-        Value         "50e-3"
-        Show          on
-      }
-    }
-    Component {
-      Type          Inductor
-      Name          "L7"
-      Show          off
-      Position      [815, 410]
-      Direction     up
-      Flipped       on
-      LabelPosition east
-      Parameter {
-        Variable      "L"
-        Value         "2e-9"
-        Show          on
-      }
-      Parameter {
-        Variable      "i_init"
-        Value         "0"
-        Show          off
-      }
-    }
-    Component {
-      Type          Capacitor
-      Name          "Co9"
-      Show          off
-      Position      [730, 295]
-      Direction     up
-      Flipped       off
-      LabelPosition east
-      Parameter {
-        Variable      "C"
-        Value         "3e-6"
-        Show          on
-      }
-      Parameter {
-        Variable      "v_init"
-        Value         "0"
-        Show          off
-      }
-    }
-    Component {
-      Type          Resistor
-      Name          "Rc9"
-      Show          off
-      Position      [730, 350]
-      Direction     up
-      Flipped       off
-      LabelPosition east
-      Parameter {
-        Variable      "R"
-        Value         "50e-3"
-        Show          on
-      }
-    }
-    Component {
-      Type          Inductor
-      Name          "L8"
-      Show          off
-      Position      [730, 410]
-      Direction     up
-      Flipped       on
-      LabelPosition east
-      Parameter {
-        Variable      "L"
-        Value         "2e-9"
-        Show          on
-      }
-      Parameter {
-        Variable      "i_init"
-        Value         "0"
-        Show          off
-      }
-    }
-    Component {
-      Type          Capacitor
-      Name          "Co10"
-      Show          off
-      Position      [645, 295]
-      Direction     up
-      Flipped       off
-      LabelPosition east
-      Parameter {
-        Variable      "C"
-        Value         "3e-6"
-        Show          on
-      }
-      Parameter {
-        Variable      "v_init"
-        Value         "0"
-        Show          off
-      }
-    }
-    Component {
-      Type          Resistor
-      Name          "Rc10"
-      Show          off
-      Position      [645, 350]
-      Direction     up
-      Flipped       off
-      LabelPosition east
-      Parameter {
-        Variable      "R"
-        Value         "50e-3"
-        Show          on
-      }
-    }
-    Component {
-      Type          Inductor
-      Name          "L9"
-      Show          off
-      Position      [645, 410]
-      Direction     up
-      Flipped       on
-      LabelPosition east
-      Parameter {
-        Variable      "L"
-        Value         "2e-9"
-        Show          on
-      }
-      Parameter {
-        Variable      "i_init"
-        Value         "0"
-        Show          off
-      }
-    }
-    Component {
-      Type          Capacitor
-      Name          "Co11"
-      Show          off
-      Position      [560, 295]
-      Direction     up
-      Flipped       off
-      LabelPosition east
-      Parameter {
-        Variable      "C"
-        Value         "3e-6"
-        Show          on
-      }
-      Parameter {
-        Variable      "v_init"
-        Value         "0"
-        Show          off
-      }
-    }
-    Component {
-      Type          Resistor
-      Name          "Rc11"
-      Show          off
-      Position      [560, 350]
-      Direction     up
-      Flipped       off
-      LabelPosition east
-      Parameter {
-        Variable      "R"
-        Value         "50e-3"
-        Show          on
-      }
-    }
-    Component {
-      Type          Inductor
-      Name          "L10"
-      Show          off
-      Position      [560, 410]
-      Direction     up
-      Flipped       on
-      LabelPosition east
-      Parameter {
-        Variable      "L"
-        Value         "2e-9"
-        Show          on
-      }
-      Parameter {
-        Variable      "i_init"
-        Value         "0"
-        Show          off
-      }
-    }
-    Component {
-      Type          Capacitor
-      Name          "Co12"
-      Show          off
-      Position      [475, 295]
-      Direction     up
-      Flipped       off
-      LabelPosition east
-      Parameter {
-        Variable      "C"
-        Value         "3e-6"
-        Show          on
-      }
-      Parameter {
-        Variable      "v_init"
-        Value         "0"
-        Show          off
-      }
-    }
-    Component {
-      Type          Resistor
-      Name          "Rc12"
-      Show          off
-      Position      [475, 350]
-      Direction     up
-      Flipped       off
-      LabelPosition east
-      Parameter {
-        Variable      "R"
-        Value         "50e-3"
-        Show          on
-      }
-    }
-    Component {
-      Type          Inductor
-      Name          "L11"
-      Show          off
-      Position      [475, 410]
-      Direction     up
-      Flipped       on
-      LabelPosition east
-      Parameter {
-        Variable      "L"
-        Value         "2e-9"
-        Show          on
-      }
-      Parameter {
-        Variable      "i_init"
-        Value         "0"
-        Show          off
-      }
-    }
-    Component {
-      Type          Capacitor
-      Name          "Co13"
-      Show          off
-      Position      [390, 295]
-      Direction     up
-      Flipped       off
-      LabelPosition east
-      Parameter {
-        Variable      "C"
-        Value         "3e-6"
-        Show          on
-      }
-      Parameter {
-        Variable      "v_init"
-        Value         "0"
-        Show          off
-      }
-    }
-    Component {
-      Type          Resistor
-      Name          "Rc13"
-      Show          off
-      Position      [390, 350]
-      Direction     up
-      Flipped       off
-      LabelPosition east
-      Parameter {
-        Variable      "R"
-        Value         "50e-3"
-        Show          on
-      }
-    }
-    Component {
-      Type          Inductor
-      Name          "L12"
-      Show          off
-      Position      [390, 410]
-      Direction     up
-      Flipped       on
-      LabelPosition east
-      Parameter {
-        Variable      "L"
-        Value         "2e-9"
-        Show          on
-      }
-      Parameter {
-        Variable      "i_init"
-        Value         "0"
-        Show          off
-      }
-    }
-    Component {
-      Type          Capacitor
-      Name          "Co14"
-      Show          off
-      Position      [305, 295]
-      Direction     up
-      Flipped       off
-      LabelPosition east
-      Parameter {
-        Variable      "C"
-        Value         "3e-6"
-        Show          on
-      }
-      Parameter {
-        Variable      "v_init"
-        Value         "0"
-        Show          off
-      }
-    }
-    Component {
-      Type          Resistor
-      Name          "Rc14"
-      Show          off
-      Position      [305, 350]
-      Direction     up
-      Flipped       off
-      LabelPosition east
-      Parameter {
-        Variable      "R"
-        Value         "50e-3"
-        Show          on
-      }
-    }
-    Component {
-      Type          Inductor
-      Name          "L13"
-      Show          off
-      Position      [305, 410]
-      Direction     up
-      Flipped       on
-      LabelPosition east
-      Parameter {
-        Variable      "L"
-        Value         "2e-9"
-        Show          on
-      }
-      Parameter {
-        Variable      "i_init"
-        Value         "0"
-        Show          off
-      }
-    }
-    Component {
-      Type          Capacitor
-      Name          "Co15"
-      Show          off
-      Position      [220, 295]
-      Direction     up
-      Flipped       off
-      LabelPosition east
-      Parameter {
-        Variable      "C"
-        Value         "3e-6"
-        Show          on
-      }
-      Parameter {
-        Variable      "v_init"
-        Value         "0"
-        Show          off
-      }
-    }
-    Component {
-      Type          Resistor
-      Name          "Rc15"
-      Show          off
-      Position      [220, 350]
-      Direction     up
-      Flipped       off
-      LabelPosition east
-      Parameter {
-        Variable      "R"
-        Value         "50e-3"
-        Show          on
-      }
-    }
-    Component {
-      Type          Inductor
-      Name          "L14"
-      Show          off
-      Position      [220, 410]
-      Direction     up
-      Flipped       on
-      LabelPosition east
-      Parameter {
-        Variable      "L"
-        Value         "2e-9"
-        Show          on
-      }
-      Parameter {
-        Variable      "i_init"
-        Value         "0"
-        Show          off
-      }
-    }
-    Component {
       Type          VoltageSource
       Name          "V"
       Show          off
-      Position      [120, 350]
+      Position      [400, 350]
       Direction     down
       Flipped       on
       LabelPosition east
@@ -867,7 +451,7 @@ Plecs {
       Type          SmallSignalPerturbation
       Name          "Perturbation"
       Show          off
-      Position      [80, 350]
+      Position      [360, 350]
       Direction     right
       Flipped       off
       LabelPosition south
@@ -881,7 +465,7 @@ Plecs {
       Type          Voltmeter
       Name          "Vm1"
       Show          off
-      Position      [1720, 350]
+      Position      [1240, 355]
       Direction     up
       Flipped       off
       LabelPosition west
@@ -890,7 +474,7 @@ Plecs {
       Type          SmallSignalResponse
       Name          "Response"
       Show          off
-      Position      [1760, 350]
+      Position      [1280, 355]
       Direction     right
       Flipped       off
       LabelPosition south
@@ -909,7 +493,7 @@ Plecs {
       Type          Capacitor
       Name          "C1"
       Show          off
-      Position      [1300, 300]
+      Position      [820, 305]
       Direction     left
       Flipped       on
       LabelPosition north
@@ -928,7 +512,7 @@ Plecs {
       Type          Capacitor
       Name          "C2"
       Show          off
-      Position      [1300, 385]
+      Position      [820, 390]
       Direction     left
       Flipped       on
       LabelPosition north
@@ -947,7 +531,7 @@ Plecs {
       Type          Resistor
       Name          "Rdc1"
       Show          off
-      Position      [120, 300]
+      Position      [400, 300]
       Direction     up
       Flipped       off
       LabelPosition east
@@ -961,7 +545,7 @@ Plecs {
       Type          Resistor
       Name          "Rc24"
       Show          off
-      Position      [1390, 350]
+      Position      [910, 355]
       Direction     up
       Flipped       off
       LabelPosition east
@@ -975,7 +559,7 @@ Plecs {
       Type          Inductor
       Name          "L23"
       Show          off
-      Position      [1390, 410]
+      Position      [910, 415]
       Direction     up
       Flipped       on
       LabelPosition east
@@ -994,7 +578,7 @@ Plecs {
       Type          Capacitor
       Name          "Co16"
       Show          off
-      Position      [1390, 295]
+      Position      [910, 300]
       Direction     up
       Flipped       off
       LabelPosition east
@@ -1013,11 +597,11 @@ Plecs {
       Type          Wire
       SrcComponent  "Co2"
       SrcTerminal   1
-      Points        [1170, 255]
+      Points        [690, 260]
       Branch {
-        Points        [1270, 255; 1270, 300]
+        Points        [790, 260; 790, 305]
         Branch {
-          Points        [1270, 340]
+          Points        [790, 345]
           DstComponent  "CMC"
           DstTerminal   1
         }
@@ -1027,75 +611,19 @@ Plecs {
         }
       }
       Branch {
-        Points        [1105, 255]
+        Points        [625, 260]
         Branch {
-          Points        [1040, 255]
+          Points        [560, 260]
           Branch {
-            Points        [975, 255]
+            Points        [495, 260]
             Branch {
               DstComponent  "Co7"
               DstTerminal   1
             }
             Branch {
-              Points        [815, 255]
-              Branch {
-                Points        [730, 255]
-                Branch {
-                  DstComponent  "Co9"
-                  DstTerminal   1
-                }
-                Branch {
-                  Points        [645, 255]
-                  Branch {
-                    DstComponent  "Co10"
-                    DstTerminal   1
-                  }
-                  Branch {
-                    Points        [560, 255]
-                    Branch {
-                      DstComponent  "Co11"
-                      DstTerminal   1
-                    }
-                    Branch {
-                      Points        [475, 255]
-                      Branch {
-                        DstComponent  "Co12"
-                        DstTerminal   1
-                      }
-                      Branch {
-                        Points        [390, 255]
-                        Branch {
-                          DstComponent  "Co13"
-                          DstTerminal   1
-                        }
-                        Branch {
-                          Points        [305, 255]
-                          Branch {
-                            Points        [220, 255]
-                            Branch {
-                              DstComponent  "Co15"
-                              DstTerminal   1
-                            }
-                            Branch {
-                              Points        [120, 255]
-                              DstComponent  "Rdc1"
-                              DstTerminal   1
-                            }
-                          }
-                          Branch {
-                            DstComponent  "Co14"
-                            DstTerminal   1
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-              Branch {
-                DstComponent  "Co8"
-                DstTerminal   1
-              }
+              Points        [400, 260]
+              DstComponent  "Rdc1"
+              DstTerminal   1
             }
           }
           Branch {
@@ -1127,11 +655,11 @@ Plecs {
       Type          Wire
       SrcComponent  "L1"
       SrcTerminal   1
-      Points        [1170, 445]
+      Points        [690, 450]
       Branch {
-        Points        [1270, 445; 1270, 385]
+        Points        [790, 450; 790, 390]
         Branch {
-          Points        [1270, 360]
+          Points        [790, 365]
           DstComponent  "CMC"
           DstTerminal   3
         }
@@ -1141,75 +669,19 @@ Plecs {
         }
       }
       Branch {
-        Points        [1105, 445]
+        Points        [625, 450]
         Branch {
-          Points        [1040, 445]
+          Points        [560, 450]
           Branch {
-            Points        [975, 445]
+            Points        [495, 450]
             Branch {
               DstComponent  "L6"
               DstTerminal   1
             }
             Branch {
-              Points        [815, 445]
-              Branch {
-                Points        [730, 445]
-                Branch {
-                  Points        [645, 445]
-                  Branch {
-                    Points        [560, 445]
-                    Branch {
-                      Points        [475, 445]
-                      Branch {
-                        Points        [390, 445]
-                        Branch {
-                          Points        [305, 445]
-                          Branch {
-                            Points        [220, 445]
-                            Branch {
-                              DstComponent  "L14"
-                              DstTerminal   1
-                            }
-                            Branch {
-                              Points        [120, 445]
-                              DstComponent  "V"
-                              DstTerminal   2
-                            }
-                          }
-                          Branch {
-                            DstComponent  "L13"
-                            DstTerminal   1
-                          }
-                        }
-                        Branch {
-                          DstComponent  "L12"
-                          DstTerminal   1
-                        }
-                      }
-                      Branch {
-                        DstComponent  "L11"
-                        DstTerminal   1
-                      }
-                    }
-                    Branch {
-                      DstComponent  "L10"
-                      DstTerminal   1
-                    }
-                  }
-                  Branch {
-                    DstComponent  "L9"
-                    DstTerminal   1
-                  }
-                }
-                Branch {
-                  DstComponent  "L8"
-                  DstTerminal   1
-                }
-              }
-              Branch {
-                DstComponent  "L7"
-                DstTerminal   1
-              }
+              Points        [400, 450]
+              DstComponent  "V"
+              DstTerminal   2
             }
           }
           Branch {
@@ -1294,118 +766,6 @@ Plecs {
       DstTerminal   2
     }
     Connection {
-      Type          Wire
-      SrcComponent  "Co8"
-      SrcTerminal   2
-      DstComponent  "Rc8"
-      DstTerminal   1
-    }
-    Connection {
-      Type          Wire
-      SrcComponent  "Rc8"
-      SrcTerminal   2
-      DstComponent  "L7"
-      DstTerminal   2
-    }
-    Connection {
-      Type          Wire
-      SrcComponent  "Co9"
-      SrcTerminal   2
-      DstComponent  "Rc9"
-      DstTerminal   1
-    }
-    Connection {
-      Type          Wire
-      SrcComponent  "Rc9"
-      SrcTerminal   2
-      DstComponent  "L8"
-      DstTerminal   2
-    }
-    Connection {
-      Type          Wire
-      SrcComponent  "Co10"
-      SrcTerminal   2
-      DstComponent  "Rc10"
-      DstTerminal   1
-    }
-    Connection {
-      Type          Wire
-      SrcComponent  "Rc10"
-      SrcTerminal   2
-      DstComponent  "L9"
-      DstTerminal   2
-    }
-    Connection {
-      Type          Wire
-      SrcComponent  "Co11"
-      SrcTerminal   2
-      DstComponent  "Rc11"
-      DstTerminal   1
-    }
-    Connection {
-      Type          Wire
-      SrcComponent  "Rc11"
-      SrcTerminal   2
-      DstComponent  "L10"
-      DstTerminal   2
-    }
-    Connection {
-      Type          Wire
-      SrcComponent  "Co12"
-      SrcTerminal   2
-      DstComponent  "Rc12"
-      DstTerminal   1
-    }
-    Connection {
-      Type          Wire
-      SrcComponent  "Rc12"
-      SrcTerminal   2
-      DstComponent  "L11"
-      DstTerminal   2
-    }
-    Connection {
-      Type          Wire
-      SrcComponent  "Co13"
-      SrcTerminal   2
-      DstComponent  "Rc13"
-      DstTerminal   1
-    }
-    Connection {
-      Type          Wire
-      SrcComponent  "Rc13"
-      SrcTerminal   2
-      DstComponent  "L12"
-      DstTerminal   2
-    }
-    Connection {
-      Type          Wire
-      SrcComponent  "Co14"
-      SrcTerminal   2
-      DstComponent  "Rc14"
-      DstTerminal   1
-    }
-    Connection {
-      Type          Wire
-      SrcComponent  "Rc14"
-      SrcTerminal   2
-      DstComponent  "L13"
-      DstTerminal   2
-    }
-    Connection {
-      Type          Wire
-      SrcComponent  "Co15"
-      SrcTerminal   2
-      DstComponent  "Rc15"
-      DstTerminal   1
-    }
-    Connection {
-      Type          Wire
-      SrcComponent  "Rc15"
-      SrcTerminal   2
-      DstComponent  "L14"
-      DstTerminal   2
-    }
-    Connection {
       Type          Signal
       SrcComponent  "Vm1"
       SrcTerminal   3
@@ -1416,15 +776,15 @@ Plecs {
       Type          Wire
       SrcComponent  "CMC"
       SrcTerminal   2
-      Points        [1330, 340; 1330, 300]
+      Points        [850, 345; 850, 305]
       Branch {
-        Points        [1330, 255; 1390, 255]
+        Points        [850, 260; 910, 260]
         Branch {
-          Points        [1475, 255]
+          Points        [995, 260]
           Branch {
-            Points        [1550, 255]
+            Points        [1070, 260]
             Branch {
-              Points        [1720, 255]
+              Points        [1240, 260]
               DstComponent  "Vm1"
               DstTerminal   1
             }
@@ -1452,15 +812,15 @@ Plecs {
       Type          Wire
       SrcComponent  "CMC"
       SrcTerminal   4
-      Points        [1330, 360; 1330, 385]
+      Points        [850, 365; 850, 390]
       Branch {
-        Points        [1330, 445; 1390, 445]
+        Points        [850, 450; 910, 450]
         Branch {
-          Points        [1475, 445]
+          Points        [995, 450]
           Branch {
-            Points        [1550, 445]
+            Points        [1070, 450]
             Branch {
-              Points        [1720, 445]
+              Points        [1240, 450]
               DstComponent  "Vm1"
               DstTerminal   2
             }
@@ -1513,18 +873,7 @@ Plecs {
       DstTerminal   3
     }
     RectangleAnnotation {
-      Position     [540, 360]
-      Width        680
-      Height       320
-      CornerRadius 3
-      Thickness    2
-      PenColor     4294967040
-      PenAlpha     1
-      BrushColor   39423
-      BrushAlpha   0
-    } 
-    RectangleAnnotation {
-      Position     [1100, 360]
+      Position     [620, 365]
       Width        280
       Height       320
       CornerRadius 3
@@ -1535,7 +884,7 @@ Plecs {
       BrushAlpha   0
     } 
     RectangleAnnotation {
-      Position     [1500, 360]
+      Position     [1020, 365]
       Width        280
       Height       320
       CornerRadius 3
@@ -1546,7 +895,7 @@ Plecs {
       BrushAlpha   0
     } 
     RectangleAnnotation {
-      Position     [100, 360]
+      Position     [380, 360]
       Width        120
       Height       320
       CornerRadius 3
@@ -1557,7 +906,7 @@ Plecs {
       BrushAlpha   0
     } 
     RectangleAnnotation {
-      Position     [1740, 360]
+      Position     [1260, 365]
       Width        120
       Height       320
       CornerRadius 3
@@ -1590,4 +939,4 @@ Plecs {
     MaxNumberOfThreads "-1"
   }
 }
-DemoSignature "IaVNWe3bCzP0AjR9OfGozkr42Csf+lb0pIYl1n4rgVc="
+DemoSignature "+HOe1UyfcelM7PzeLsv3uE+IT783GMhFQRscpv8cT4I="

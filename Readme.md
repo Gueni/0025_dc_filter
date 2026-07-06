@@ -30,9 +30,8 @@ flowchart LR
         V["V source<br/>Rdc1 = 1 µΩ"]
     end
 
-    subgraph IN["Input Capacitor Cluster (12 cells, X-type)"]
+    subgraph IN["Input Capacitor Cluster (4 cells, X-type)"]
         direction TB
-        IN1["8× LLC output caps<br/>3µF / 50mΩ / 2e-9H"]
         IN2["4× 1st filter stage caps<br/>6 µF / 7 mΩ / 9e-9H"]
     end
 
@@ -75,7 +74,6 @@ This cluster represents two things placed physically close together on the DC bu
 
 | Sub-group | Cells | C/cell | ESR/cell | ESL/cell | Represents |
 |-----------|-------|--------|----------|----------|------------|
-| LLC output capacitors | 8 | 3 µF | 50mΩ | 2e-9H | Bulk MLCC/film caps directly on the LLC's rectified output |
 | First DC filter stage | 4 | 6 µF | 7 mΩ | 9e-9H | Dedicated larger-value filter caps, first EMI attenuation stage |
 
 **Combined (all 12 in parallel):**
@@ -339,7 +337,6 @@ Mapping this filter's measured response onto those bands:
 
 | Group | # cells | C/cell | ESR/cell | ESL/cell | Individual SRF |
 |-------|---------|--------|----------|----------|----------------|
-| LLC output caps | 8 | 3µF | 50mΩ | 2e-9H | 6.37 MHz |
 | First DC filter stage | 4 | 6 µF | 7 mΩ | 9e-9H | 22.5 kHz* |
 
 \* *This is the SRF of an isolated 6 µF/9e-9H cell — a useful reference value, though (per Section 11) it does not directly shape the plotted transfer function, since this whole cluster sits across the source.*
