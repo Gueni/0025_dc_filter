@@ -311,3 +311,33 @@ Conducted emissions are measured (via a LISN) across 150 kHz – 108 MHz — **n
 | CISPR 25 conducted-emissions range | 150 kHz – 108 MHz |
 | Filter primary notch vs. LLC band | 417 kHz notch overlaps upper half of LLC range |
 | Filter weak point vs. LLC band | FM band (76–108 MHz) unrelated to LLC fundamental; needs supplementary filtering |
+
+
+---
+# Proposed Redesigned Component Values
+---
+| Component | Parameter | Current Value | **Proposed Value** | Rationale |
+|---|---|---|---|---|
+| **Input cluster (C8–C11)** | C / cell | 6 µF | **6 µF** (unchanged) | Bulk storage already adequate; no effect on H(f) due to ideal-source shielding |
+| | ESR / cell | 10 mΩ | **10 mΩ** (unchanged) | Not performance-limiting here |
+| | ESL / cell | 9 nH | **9 nH** (unchanged) | — |
+| **Damping network (NEW)** | Topology | — | **RC snubber, added in shunt across CMC input side** | Needed to tame the +45 dB peak |
+| | Rd | — | **1.3 Ω** | ≈ √(L_leak / C_total), critical damping of the 9.5 kHz LC resonance |
+| | Cd | — | **10 µF** | Large enough to pass DC/low-freq without loading the bus; blocks Rd's DC dissipation |
+| **CMC (L17/L18)** | Self-inductance / winding | 3 mH | **3 mH** (unchanged) | Already gives good leakage inductance and CM blocking |
+| | Winding R | 3 mΩ | **3 mΩ** (unchanged) | Low-loss, fine as-is |
+| | Coupling coefficient k | 0.99625 | **0.99625** (unchanged) | DM leakage of 22.5 µH is already well-placed |
+| | Parasitic C / winding | 3 pF | **1 pF** | Tighter winding/potting pushes CMC's own SRF from ~27 MHz → **~47.5 MHz**, extending useful attenuation further into the CISPR band before rollover |
+| **Output cluster** | C13 | 3 µF / 50 mΩ / 2 nH | **3 µF / 20 mΩ / 2 nH** | Lower ESR deepens the ~2 MHz secondary dip without changing its frequency |
+| | C14 | 4.7 µF / 50 mΩ / 25 nH | **10 µF / 5 mΩ / 25 nH** | Larger C + much lower ESR → deeper, better-placed primary notch |
+| | C15 | 4.7 µF / 50 mΩ / 25 nH | **10 µF / 5 mΩ / 25 nH** | Identical to C14, paired |
+| | C14 ∥ C15 combined | 9.4 µF / 25 mΩ / 12.5 nH, f_res ≈ 417 kHz | **20 µF / 2.5 mΩ / 12.5 nH, f_res ≈ 318 kHz** | Centers the primary notch inside the 150–500 kHz LLC band (was at the edge); ESR drop turns a shallow ~−88 dB notch into a much deeper one |
+| **Supplementary HF stage (NEW)** | Ferrite bead / feedthrough cap at connector | — | **Add ferrite bead (e.g. ~100 Ω @ 100 MHz) + 1 nF feedthrough cap to chassis** | Covers the residual gap from ~47.5 MHz up through the 76–108 MHz FM band, where even the improved CMC alone can't fully help |
+
+**Net effect of these changes:**
+- The 9.5 kHz peak is critically damped instead of spiking +45 dB.
+- The primary notch moves from ~417 kHz (shallow, off-center) to ~318 kHz (deep, centered in the 150–500 kHz LLC band).
+- CMC self-resonance moves from ~27 MHz to ~47.5 MHz, buying ~20 MHz more useful attenuation.
+- The remaining 47.5–108 MHz gap (FM band) is closed with a conventional supplementary ferrite bead + feedthrough cap rather than trying to solve it purely with lumped LC values.
+
+Want me to fold this table into the readme as a new "Proposed Redesign" section, or rerun the LTspice sweep with these values first to confirm the notch/peak positions before you commit them to the doc?
