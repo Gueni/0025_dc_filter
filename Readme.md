@@ -65,6 +65,8 @@ flowchart LR
 - Every RLC "cell" in both clusters is wired across the two conductors (a shunt / X-capacitor), not in series along one conductor.
 - The only series element in the entire path is the CMC — one winding (L17) sits in the top conductor, the other (L18) sits in the bottom conductor, and they are magnetically coupled with k = 0.99625.
 
+![DC Filter Schematic](DC_filter.png)
+
 ### Self-Resonant Frequency (SRF) — Input Cluster
 
 For N identical cells in parallel, `L_eff = L/N` and `C_eff = C·N`, so the product `L_eff · C_eff = L·C` is unchanged. The SRF of a parallel bank of identical cells is therefore *exactly the same* as the SRF of one cell.
@@ -105,6 +107,8 @@ R(DM)      = 2 × 3 mΩ        = 6 mΩ
 A coupling coefficient of 0.99625 is a well-wound CMC — only 0.375% of the flux fails to cancel, leaving a small but non-zero series inductance in the DM path. This is intentional: filter designers often *want* a modest residual DM leakage inductance from the CMC, because it adds a "free" extra pole to the differential-mode LC filter without needing a separate DM choke.
 
 Each winding (L17, L18) has a 3 pF capacitor (C17, C18) wired directly across its own two terminals. This is not a Y-safety-capacitor (those are nanofarad-scale, chassis-referenced, and safety-agency rated) — 3 pF is far too small and, critically, it is *not* connected to ground anywhere. It represents the inter-winding/turn-to-turn parasitic capacitance that every real wound inductor has. It is what makes a physical choke stop behaving like a choke at high frequency.
+
+![ltsp](ltsp.png)
 
 ### The CMC's Own Self-Resonance
 
@@ -171,6 +175,9 @@ H(f) ≈ Z_out(f) / (Z_CMC(f) + Z_out(f))
 ```
 
 ## Bode Plot, Zone by Zone
+
+![Plot](Plot.png)
+
 
 #### Zone 1 — 10 Hz to a few kHz: Passband (0 dB, 0°)
 At these frequencies every capacitor's impedance is enormous and every inductor's is negligible, so the whole network is transparent — required, since the actual DC charging current and low-frequency ripple must pass essentially undisturbed.
