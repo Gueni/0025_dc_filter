@@ -68,38 +68,13 @@ flowchart LR
 - Every RLC "cell" in both clusters is wired across the two conductors (a shunt / X-capacitor), not in series along one conductor.
 - The only series element in the entire path is the CMC — one winding sits in the top conductor, the other winding sits in the bottom conductor, and they are magnetically coupled.
 
-### The Input Capacitor Cluster
-----
-This cluster represents two things placed physically close together on the DC bus, lumped into one simulation node because there's no meaningful impedance between them on a PCB/bus-bar scale:
-
-| Sub-group | Cells | C/cell | ESR/cell | ESL/cell | Represents |
-|-----------|-------|--------|----------|----------|------------|
-| First DC filter stage | 4 | 6 µF | 7 mΩ | 9e-9H | Dedicated larger-value filter caps, first EMI attenuation stage |
-
-Combined (all 12 in parallel):
-
-```
-C_eff   ≈ 8×3µF + 4×6 µF   = 22.0 µF
-1/R_eff = 8/50mΩ + 4/7 mΩ   →  R_eff ≈ 3.94 mΩ
-1/L_eff = 8/2e-9H + 4/9e-9H   →  L_eff ≈ 0.192 nH
-```
-
- Why spread capacitance across many parallel cells?
-
-1. Thermal spreading — ripple-current I²R heating is distributed across more components.
-2. Current sharing — no single capacitor carries the full ripple current.
-3. Lower effective ESL — N identical caps in parallel divide ESL by N: `L_eff = L_cell / N`.
-4. Layout reality — capacitors are physically spread along a bus bar; each really does have a slightly different parasitic loop.
-
 ### Self-resonant frequency (SRF)
 ---
-A neat and easy-to-miss algebra fact: for N identical cells in parallel, `L_eff = L/N` and `C_eff = C·N`, so the product `L_eff · C_eff = L·C` is unchanged. The SRF of a parallel bank of identical cells is therefore *exactly the same* as the SRF of one cell:
+for N identical cells in parallel, `L_eff = L/N` and `C_eff = C·N`, so the product `L_eff · C_eff = L·C` is unchanged. The SRF of a parallel bank of identical cells is therefore *exactly the same* as the SRF of one cell:
 
 ```
 f_SRF = 1 / (2π√(L·C)) = 1 / (2π√(2.5e-9 × 0.25e-6)) ≈ 6.37 MHz
 ```
-
-*(The previous draft of this document stated ~18 MHz for the 8-cell bank — that was a mistake; the correct value, confirmed above, is 6.37 MHz, identical to a single cell.)*
 
 Above 6.37 MHz, each of these small capacitors starts to look inductive rather than capacitive.
 
@@ -130,13 +105,18 @@ L_leak(DM) = 2 × L×(1 − k)   = 2 × 3 mH × (1 − 0.99625) = 2 × 11.25 µH
 R(DM)      = 2 × 3 mΩ        = 6 mΩ
 ```
 
-A coupling coefficient of 0.99625 is a realistic, well-wound CMC — only 0.375% of the flux fails to cancel, leaving a small but non-zero series inductance in the DM path. This is intentional: filter designers often *want* a modest residual DM leakage inductance from the CMC, because it adds a "free" extra pole to the differential-mode LC filter without needing a separate DM choke.
+A coupling coefficient of 0.99625 is , well-wound CMC — only 0.375% of the flux fails to cancel, leaving a small but non-zero series inductance in the DM path.
+This is intentional: filter designers often *want* a modest residual DM leakage inductance from the CMC, because it adds a "free" extra pole to the differential-mode LC filter without needing a separate DM choke.
 
-Winding self-capacitance: each winding has a 3 pF capacitor wired directly across its own two terminals (`C1` across the top winding, `C2` across the bottom winding). This is not a Y-safety-capacitor (those are nanofarad-scale, chassis-referenced, and safety-agency rated) — 3 pF is far too small and, critically, it is *not* connected to ground anywhere. It represents the inter-winding/turn-to-turn parasitic capacitance that every real wound inductor has. It is what makes a physical choke stop behaving like a choke at high frequency.
+each winding has a 3 pF capacitor wired directly across its own two terminals (`C1` across the top winding, `C2` across the bottom winding). 
+This is not a Y-safety-capacitor (those are nanofarad-scale, chassis-referenced, and safety-agency rated) — 3 pF is far too small and, critically, it is *not* connected to ground anywhere. 
+
+It represents the inter-winding/turn-to-turn parasitic capacitance that every real wound inductor has. It is what makes a physical choke stop behaving like a choke at high frequency.
 
 ### The CMC's own self-resonance
 ---
-Because `C1`/`C2` sit in parallel with each winding's own (R + jωL) branch, they form a parallel resonant tank with that winding, not a series one. A parallel LC tank has *maximum* impedance at resonance — the opposite of a series LC notch filter.
+Because `C1`/`C2` sit in parallel with each winding's own (R + jωL) branch, they form a parallel resonant tank with that winding, not a series one. 
+A parallel LC tank has *maximum* impedance at resonance — the opposite of a series LC notch filter.
 
 ```
 f_SRF(CMC winding) = 1 / (2π√(L × C)) = 1 / (2π√(3e-3 × 3e-12)) ≈ 1.68 MHz   (using full self-inductance)
@@ -148,13 +128,11 @@ But because the winding's *effective* series inductance in the DM loop is the mu
 f_SRF(CMC, DM leakage path) = 1 / (2π√(L_leak × C)) ≈ 1 / (2π√(11.25e-6 × 3e-12)) ≈ 27.4 MHz
 ```
 
-This is the real cause of the deepest notch in the Bode plot (see Section 10) — around this frequency the choke's own parasitic capacitance and its leakage inductance anti-resonate, momentarily presenting a *very large* series impedance to the differential path, which produces the sharpest attenuation feature in the whole curve. Above that frequency, the parasitic capacitance takes over and the choke's impedance *collapses*, which is why filtering performance falls apart above ~30–50 MHz.
-
+This is the real cause of the deepest notch in the Bode plot around this frequency the choke's own parasitic capacitance and its leakage inductance anti-resonate, momentarily presenting a *very large* series impedance to the differential path, which produces the sharpest attenuation feature in the whole curve. Above that frequency, the parasitic capacitance takes over and the choke's impedance *collapses*, which is why filtering performance falls apart above ~30–50 MHz.
 
 
 ### The Output Capacitor Cluster
 ---
-Three RLC cells, all wired directly across the two output conductors, right where `Vm1` measures the output voltage:
 
 | Cell | C | ESR | ESL | Individual SRF |
 |------|---|-----|-----|----------------|
@@ -170,13 +148,11 @@ L_eff           = 25 nH / 2                   = 12.5 nH
 f_res           = 1 / (2π√(12.5e-9 × 9.4e-6)) ≈ 417 kHz
 ```
 
-*(The previous draft computed this as ~13.2 MHz — that was an arithmetic slip; ~417 kHz is correct and, reassuringly, lines up almost exactly with a deep notch actually visible in the Bode plot around 400–450 kHz — see Section 10.)*
-
 Total output-side capacitance across all three cells: `0.25 + 4.7 + 4.7 = 9.66 µF`.
 
 
-### Why Real Capacitors Are Modeled as RLC, Not Ideal C
----
+Why Real Capacitors Are Modeled as RLC, Not Ideal C ?
+
 An ideal capacitor has impedance `Z = 1/(jωC)`, which falls forever as frequency rises. A real capacitor has parasitic series resistance (ESR, from electrode and termination losses) and parasitic series inductance (ESL, from leads, internal geometry, and PCB pads):
 
 ```
@@ -192,10 +168,8 @@ This means every real capacitor has three regimes:
 Modeling every capacitor bank as N parallel RLC cells (rather than one lumped ideal capacitor) is what allows this simulation to correctly predict the notches, the anti-resonance peak, and the eventual loss of high-frequency performance — none of which an ideal-capacitor model could produce. This is standard, necessary practice for any EMI filter simulation meant to be trusted against real hardware measurements or a network analyzer sweep.
 
 
-
 ### The Transfer Function, Derived and Verified
-
-
+---
 Because the input capacitor cluster sits directly across the (nearly ideal) voltage source, with only the negligible 1 µΩ `Rdc1` in between, it draws current but cannot change the voltage that the CMC "sees." The entire shape of `H(f)` is therefore governed by just two things:
 
 1. The CMC's differential-mode series impedance, `Z_CMC(f)` — combining leakage inductance, winding resistance, and the parasitic self-capacitance's anti-resonance
@@ -206,7 +180,6 @@ To first order, this collapses to a simple voltage divider:
 ```
 H(f) ≈ Z_out(f) / (Z_CMC(f) + Z_out(f))
 ```
-
 
 ##  Bode Plot, Zone by Zone
 
@@ -277,7 +250,7 @@ Relevance to CISPR 25: the strictest automotive class (Class 5) requires conduct
 | > 50 MHz | Rising floor | increasing | Full parasitic (ESL/self-capacitance) dominance everywhere |
 
 
-the 12-cell input capacitor cluster (the 8 LLC-output caps and the 4 first-stage filter caps) has essentially zero effect on the plotted curve.
+the input capacitor cluster (the 8 LLC-output caps and the 4 first-stage filter caps) has essentially zero effect on the plotted curve.
 
 Why: they sit directly across the source, separated only by a 1 µΩ resistor that exists purely for numerical reasons. An ideal voltage source, by definition, holds its terminal voltage constant regardless of what's connected across it — so no matter how much (or how little) capacitance sits at that node, `V_in` doesn't change, and everything downstream of the CMC neither knows nor cares that those 12 capacitors are there. This was confirmed by the nodal simulation in Section 9, which reproduces the actual Bode plot essentially exactly using *only* the CMC and the output cluster.
 
@@ -285,7 +258,6 @@ This doesn't mean those 12 capacitors are pointless in the real filter — far f
 
 - This particular AC-sweep configuration answers one specific question well: "given an ideal disturbance voltage at the input, how much of it reaches the output?" That is a fair proxy for conducted emissions reaching the battery pack.
 - It does not answer a different, also-important question: "how much does the input capacitor cluster reduce the ripple current the LLC stage itself has to supply, or the voltage stress the CMC sees?" To see that, the excitation needs to be a current source (representing the LLC's actual switching ripple current) with a realistic source impedance, not an ideal voltage source with a near-zero series resistance.
-
 
 
 ### EMC Compliance Context — CISPR 25
@@ -317,7 +289,6 @@ Mapping this filter's measured response onto those bands:
 | FM (76–108 MHz) | Above the CMC's own self-resonance | Degraded — needs supplementary filtering |
 
 
-
 ### Practical Design Takeaways
 ---
 1. The +45 dB peak at ~11 kHz is a real risk, not a simulation artifact. It must be checked against the LLC's actual switching-frequency range (including light-load/burst-mode operation, which often dips to lower frequencies than nominal full-load switching).
@@ -326,20 +297,19 @@ Mapping this filter's measured response onto those bands:
 
 3. RLC (not ideal-C) modeling of every capacitor is what makes this simulation trustworthy. An ideal-capacitor model would predict ever-improving attenuation with frequency — physically impossible, and dangerously optimistic for a real EMC sign-off.
 
-4. Watch what your source impedance is doing. An AC-sweep with a near-ideal voltage source (as here) is blind to the input-side capacitor bank's contribution. Different excitation (current source, or realistic source impedance) is needed to evaluate that part of the design.
+4. An AC-sweep with a near-ideal voltage source (as here) is blind to the input-side capacitor bank's contribution. Different excitation (current source, or realistic source impedance) is needed to evaluate that part of the design.
 
 5. The filter is doing its best work in the hundreds-of-kHz to tens-of-MHz range, exactly where the bulk of LLC switching harmonics typically live — and is intentionally weaker right at the FM band, where enclosure shielding and ferrite beads are the normal, expected supplementary measures.
 
 
 ## Complete Component Value Tables
 
-### Input capacitor cluster (12 cells, all directly across the two conductors)
+### Input capacitor cluster
 
 | Group | # cells | C/cell | ESR/cell | ESL/cell | Individual SRF |
 |-------|---------|--------|----------|----------|----------------|
 | First DC filter stage | 4 | 6 µF | 7 mΩ | 9e-9H | 22.5 kHz* |
 
-\* *This is the SRF of an isolated 6 µF/9e-9H cell — a useful reference value, though (per Section 11) it does not directly shape the plotted transfer function, since this whole cluster sits across the source.*
 
 ### Common-Mode Choke
 
@@ -363,10 +333,3 @@ Mapping this filter's measured response onto those bands:
 | Co4 | 4.7 µF | 4.7 mΩ | 25 nH | Identical to Co3 |
 | Co3 ∥ Co4 combined | 9.4 µF | 2.35 mΩ | 12.5 nH | f_res ≈ 417 kHz |
 
-### Analysis (AC Sweep) settings
-
-- Frequency range: 10 Hz – 1 GHz
-- Scale: Logarithmic
-- Points: 10,000
-- Perturbation amplitude: 0.1 (10%)
-- Method: Linearized small-signal AC sweep
