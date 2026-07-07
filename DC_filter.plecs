@@ -1031,7 +1031,7 @@ Plecs {
     TimeSpan      "-1"
     StartTime     "0"
     Tolerance     "1e-6"
-    MaxIter       "50"
+    MaxIter       "100"
     FrequencyRange "[10 10e9]"
     FrequencyScale "2"
     AdditionalFreqs "[]"
@@ -1045,4 +1045,4 @@ Plecs {
     MaxNumberOfThreads "-1"
   }
 }
-DemoSignature "cAA+VodScQ8Iit/AI84Gp5fSJwe3DFUBh7Yk+XEWXwk="
+DemoSignature "eSLkm2uTXLmcYrxBevtgw0hzyUXDq378GBnwqZtYvNs="
