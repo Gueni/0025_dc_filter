@@ -332,12 +332,9 @@ Conducted emissions are measured (via a LISN) across 150 kHz – 108 MHz — **n
 | | C14 | 4.7 µF / 50 mΩ / 25 nH | **10 µF / 5 mΩ / 25 nH** | Larger C + much lower ESR → deeper, better-placed primary notch |
 | | C15 | 4.7 µF / 50 mΩ / 25 nH | **10 µF / 5 mΩ / 25 nH** | Identical to C14, paired |
 | | C14 ∥ C15 combined | 9.4 µF / 25 mΩ / 12.5 nH, f_res ≈ 417 kHz | **20 µF / 2.5 mΩ / 12.5 nH, f_res ≈ 318 kHz** | Centers the primary notch inside the 150–500 kHz LLC band (was at the edge); ESR drop turns a shallow ~−88 dB notch into a much deeper one |
-| **Supplementary HF stage (NEW)** | Ferrite bead / feedthrough cap at connector | — | **Add ferrite bead (e.g. ~100 Ω @ 100 MHz) + 1 nF feedthrough cap to chassis** | Covers the residual gap from ~47.5 MHz up through the 76–108 MHz FM band, where even the improved CMC alone can't fully help |
 
 **Net effect of these changes:**
 - The 9.5 kHz peak is critically damped instead of spiking +45 dB.
 - The primary notch moves from ~417 kHz (shallow, off-center) to ~318 kHz (deep, centered in the 150–500 kHz LLC band).
 - CMC self-resonance moves from ~27 MHz to ~47.5 MHz, buying ~20 MHz more useful attenuation.
 - The remaining 47.5–108 MHz gap (FM band) is closed with a conventional supplementary ferrite bead + feedthrough cap rather than trying to solve it purely with lumped LC values.
-
-Want me to fold this table into the readme as a new "Proposed Redesign" section, or rerun the LTspice sweep with these values first to confirm the notch/peak positions before you commit them to the doc?
