@@ -12,7 +12,6 @@ flowchart LR
 
     style DCF fill:#ffe28a,stroke:#333,stroke-width:2px
 ```
-
 The two LLC resonant converter modules switch in the **150 kHz – 500 kHz** range. Even after the transformers and rectification, the DC bus carries:
 
 - Ripple at the switching frequency and its harmonics (differential-mode, line-to-line)
@@ -186,6 +185,7 @@ At these frequencies every capacitor's impedance is enormous and every inductor'
 ```
 f_peak = 1 / (2π√(L_leak(DM) × C_out,total)) = 1 / (2π√(22.5 µH × 12.4 µF)) ≈ 9.5 kHz
 ```
+![alt text](image.png)
 
 This is a series LC resonance between the CMC's DM leakage inductance and the total output capacitance. At this frequency, `Z_CMC + Z_out` collapses toward the small series resistances, so `H(f)` spikes well above 0 dB — the filter *amplifies* rather than attenuates.
 
