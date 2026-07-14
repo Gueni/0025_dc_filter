@@ -1,6 +1,6 @@
 LTspice 26.0.2 for Windows
 Circuit: D:\WORKSPACE\0025_dc_filter\dc_filter.net
-Start Time: Wed Jul  8 12:24:09 2026
+Start Time: Tue Jul 14 20:45:32 2026
 solver = Normal
 Maximum thread count: 16
 tnom = 27
@@ -10,7 +10,7 @@ C13: Increased Cpar to 3e-12
 C17: Increased Cpar to 1e-18
 .OP point found by inspection.
 .OP point found by inspection.
-Total elapsed time: 0.377 seconds.
+Total elapsed time: 0.288 seconds.
 
 Files loaded:
 D:\WORKSPACE\0025_dc_filter\dc_filter.net
