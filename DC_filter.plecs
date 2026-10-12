@@ -55,7 +55,7 @@ Plecs {
   ScriptsDialogGeometry ""
   ScriptsDialogSplitterPos "0"
   Schematic {
-    Location      [0, 24; 1920, 1047]
+    Location      [0, 23; 1536, 773]
     ZoomFactor    1
     SliderPosition [0, 0]
     ShowBrowser   off
@@ -64,7 +64,7 @@ Plecs {
       Type          Capacitor
       Name          "Co2"
       Show          off
-      Position      [690, 255]
+      Position      [450, 215]
       Direction     up
       Flipped       off
       LabelPosition east
@@ -83,7 +83,7 @@ Plecs {
       Type          Resistor
       Name          "Rc2"
       Show          off
-      Position      [690, 310]
+      Position      [450, 270]
       Direction     up
       Flipped       off
       LabelPosition east
@@ -98,7 +98,7 @@ Plecs {
       SrcComponent  "Components/Electrical/Transformers/Mutual\\nInd. 2"
       Name          "CMC"
       Show          on
-      Position      [990, 320]
+      Position      [750, 280]
       Direction     right
       Flipped       on
       LabelPosition north
@@ -153,7 +153,7 @@ Plecs {
       Type          Inductor
       Name          "L1"
       Show          off
-      Position      [690, 370]
+      Position      [450, 330]
       Direction     up
       Flipped       on
       LabelPosition east
@@ -172,7 +172,7 @@ Plecs {
       Type          Capacitor
       Name          "Co3"
       Show          off
-      Position      [1190, 255]
+      Position      [950, 215]
       Direction     up
       Flipped       off
       LabelPosition east
@@ -191,7 +191,7 @@ Plecs {
       Type          Resistor
       Name          "Rc3"
       Show          off
-      Position      [1190, 310]
+      Position      [950, 270]
       Direction     up
       Flipped       off
       LabelPosition east
@@ -205,7 +205,7 @@ Plecs {
       Type          Inductor
       Name          "L2"
       Show          off
-      Position      [1190, 370]
+      Position      [950, 330]
       Direction     up
       Flipped       on
       LabelPosition east
@@ -224,7 +224,7 @@ Plecs {
       Type          Capacitor
       Name          "Co4"
       Show          off
-      Position      [1265, 255]
+      Position      [1025, 215]
       Direction     up
       Flipped       off
       LabelPosition east
@@ -243,7 +243,7 @@ Plecs {
       Type          Resistor
       Name          "Rc4"
       Show          off
-      Position      [1265, 310]
+      Position      [1025, 270]
       Direction     up
       Flipped       off
       LabelPosition east
@@ -257,7 +257,7 @@ Plecs {
       Type          Inductor
       Name          "L3"
       Show          off
-      Position      [1265, 370]
+      Position      [1025, 330]
       Direction     up
       Flipped       on
       LabelPosition east
@@ -276,7 +276,7 @@ Plecs {
       Type          Capacitor
       Name          "Co5"
       Show          off
-      Position      [625, 255]
+      Position      [385, 215]
       Direction     up
       Flipped       off
       LabelPosition east
@@ -295,7 +295,7 @@ Plecs {
       Type          Resistor
       Name          "Rc5"
       Show          off
-      Position      [625, 310]
+      Position      [385, 270]
       Direction     up
       Flipped       off
       LabelPosition east
@@ -309,7 +309,7 @@ Plecs {
       Type          Inductor
       Name          "L4"
       Show          off
-      Position      [625, 370]
+      Position      [385, 330]
       Direction     up
       Flipped       on
       LabelPosition east
@@ -328,7 +328,7 @@ Plecs {
       Type          Capacitor
       Name          "Co6"
       Show          off
-      Position      [560, 255]
+      Position      [320, 215]
       Direction     up
       Flipped       off
       LabelPosition east
@@ -347,7 +347,7 @@ Plecs {
       Type          Resistor
       Name          "Rc6"
       Show          off
-      Position      [560, 310]
+      Position      [320, 270]
       Direction     up
       Flipped       off
       LabelPosition east
@@ -361,7 +361,7 @@ Plecs {
       Type          Inductor
       Name          "L5"
       Show          off
-      Position      [560, 370]
+      Position      [320, 330]
       Direction     up
       Flipped       on
       LabelPosition east
@@ -380,7 +380,7 @@ Plecs {
       Type          Capacitor
       Name          "Co7"
       Show          off
-      Position      [495, 255]
+      Position      [255, 215]
       Direction     up
       Flipped       off
       LabelPosition east
@@ -399,7 +399,7 @@ Plecs {
       Type          Resistor
       Name          "Rc7"
       Show          off
-      Position      [495, 310]
+      Position      [255, 270]
       Direction     up
       Flipped       off
       LabelPosition east
@@ -413,7 +413,7 @@ Plecs {
       Type          Inductor
       Name          "L6"
       Show          off
-      Position      [495, 370]
+      Position      [255, 330]
       Direction     up
       Flipped       on
       LabelPosition east
@@ -432,7 +432,7 @@ Plecs {
       Type          VoltageSource
       Name          "V"
       Show          off
-      Position      [400, 305]
+      Position      [160, 265]
       Direction     down
       Flipped       on
       LabelPosition east
@@ -451,7 +451,7 @@ Plecs {
       Type          SmallSignalPerturbation
       Name          "Perturbation"
       Show          off
-      Position      [360, 305]
+      Position      [120, 265]
       Direction     right
       Flipped       off
       LabelPosition south
@@ -465,7 +465,7 @@ Plecs {
       Type          Voltmeter
       Name          "Vm1"
       Show          off
-      Position      [1435, 310]
+      Position      [1195, 270]
       Direction     up
       Flipped       off
       LabelPosition west
@@ -474,7 +474,7 @@ Plecs {
       Type          SmallSignalResponse
       Name          "Response"
       Show          off
-      Position      [1475, 310]
+      Position      [1235, 270]
       Direction     right
       Flipped       off
       LabelPosition south
@@ -493,7 +493,7 @@ Plecs {
       Type          Capacitor
       Name          "C1"
       Show          off
-      Position      [990, 270]
+      Position      [750, 230]
       Direction     left
       Flipped       on
       LabelPosition north
@@ -512,7 +512,7 @@ Plecs {
       Type          Capacitor
       Name          "C2"
       Show          off
-      Position      [990, 355]
+      Position      [750, 315]
       Direction     left
       Flipped       on
       LabelPosition north
@@ -531,7 +531,7 @@ Plecs {
       Type          Resistor
       Name          "Rdc1"
       Show          off
-      Position      [400, 255]
+      Position      [160, 215]
       Direction     up
       Flipped       off
       LabelPosition east
@@ -545,7 +545,7 @@ Plecs {
       Type          Resistor
       Name          "Rc24"
       Show          off
-      Position      [1105, 310]
+      Position      [865, 270]
       Direction     up
       Flipped       off
       LabelPosition east
@@ -559,7 +559,7 @@ Plecs {
       Type          Inductor
       Name          "L23"
       Show          off
-      Position      [1105, 370]
+      Position      [865, 330]
       Direction     up
       Flipped       on
       LabelPosition east
@@ -578,7 +578,7 @@ Plecs {
       Type          Capacitor
       Name          "Co16"
       Show          off
-      Position      [1105, 255]
+      Position      [865, 215]
       Direction     up
       Flipped       off
       LabelPosition east
@@ -597,7 +597,7 @@ Plecs {
       Type          Resistor
       Name          "Rc25"
       Show          off
-      Position      [840, 270]
+      Position      [600, 230]
       Direction     up
       Flipped       off
       LabelPosition east
@@ -611,7 +611,7 @@ Plecs {
       Type          Capacitor
       Name          "Co8"
       Show          off
-      Position      [840, 340]
+      Position      [600, 300]
       Direction     up
       Flipped       off
       LabelPosition east
@@ -630,13 +630,13 @@ Plecs {
       Type          Wire
       SrcComponent  "Co2"
       SrcTerminal   1
-      Points        [690, 215]
+      Points        [450, 175]
       Branch {
-        Points        [840, 215]
+        Points        [600, 175]
         Branch {
-          Points        [960, 215; 960, 270]
+          Points        [720, 175; 720, 230]
           Branch {
-            Points        [960, 310]
+            Points        [720, 270]
             DstComponent  "CMC"
             DstTerminal   1
           }
@@ -651,17 +651,17 @@ Plecs {
         }
       }
       Branch {
-        Points        [625, 215]
+        Points        [385, 175]
         Branch {
-          Points        [560, 215]
+          Points        [320, 175]
           Branch {
-            Points        [495, 215]
+            Points        [255, 175]
             Branch {
               DstComponent  "Co7"
               DstTerminal   1
             }
             Branch {
-              Points        [400, 215]
+              Points        [160, 175]
               DstComponent  "Rdc1"
               DstTerminal   1
             }
@@ -695,13 +695,13 @@ Plecs {
       Type          Wire
       SrcComponent  "L1"
       SrcTerminal   1
-      Points        [690, 405]
+      Points        [450, 365]
       Branch {
-        Points        [840, 405]
+        Points        [600, 365]
         Branch {
-          Points        [960, 405; 960, 355]
+          Points        [720, 365; 720, 315]
           Branch {
-            Points        [960, 330]
+            Points        [720, 290]
             DstComponent  "CMC"
             DstTerminal   3
           }
@@ -716,17 +716,17 @@ Plecs {
         }
       }
       Branch {
-        Points        [625, 405]
+        Points        [385, 365]
         Branch {
-          Points        [560, 405]
+          Points        [320, 365]
           Branch {
-            Points        [495, 405]
+            Points        [255, 365]
             Branch {
               DstComponent  "L6"
               DstTerminal   1
             }
             Branch {
-              Points        [400, 405]
+              Points        [160, 365]
               DstComponent  "V"
               DstTerminal   2
             }
@@ -823,15 +823,15 @@ Plecs {
       Type          Wire
       SrcComponent  "CMC"
       SrcTerminal   2
-      Points        [1020, 310; 1020, 270]
+      Points        [780, 270; 780, 230]
       Branch {
-        Points        [1020, 215; 1105, 215]
+        Points        [780, 175; 865, 175]
         Branch {
-          Points        [1190, 215]
+          Points        [950, 175]
           Branch {
-            Points        [1265, 215]
+            Points        [1025, 175]
             Branch {
-              Points        [1435, 215]
+              Points        [1195, 175]
               DstComponent  "Vm1"
               DstTerminal   1
             }
@@ -859,15 +859,15 @@ Plecs {
       Type          Wire
       SrcComponent  "CMC"
       SrcTerminal   4
-      Points        [1020, 330; 1020, 355]
+      Points        [780, 290; 780, 315]
       Branch {
-        Points        [1020, 405; 1105, 405]
+        Points        [780, 365; 865, 365]
         Branch {
-          Points        [1190, 405]
+          Points        [950, 365]
           Branch {
-            Points        [1265, 405]
+            Points        [1025, 365]
             Branch {
-              Points        [1435, 405]
+              Points        [1195, 365]
               DstComponent  "Vm1"
               DstTerminal   2
             }
@@ -927,7 +927,7 @@ Plecs {
       DstTerminal   1
     }
     RectangleAnnotation {
-      Position     [620, 320]
+      Position     [380, 280]
       Width        280
       Height       320
       CornerRadius 3
@@ -938,7 +938,7 @@ Plecs {
       BrushAlpha   0
     } 
     RectangleAnnotation {
-      Position     [1220, 320]
+      Position     [980, 280]
       Width        280
       Height       320
       CornerRadius 3
@@ -949,7 +949,7 @@ Plecs {
       BrushAlpha   0
     } 
     RectangleAnnotation {
-      Position     [380, 320]
+      Position     [140, 280]
       Width        120
       Height       320
       CornerRadius 3
@@ -960,7 +960,7 @@ Plecs {
       BrushAlpha   0
     } 
     RectangleAnnotation {
-      Position     [1455, 320]
+      Position     [1215, 280]
       Width        120
       Height       320
       CornerRadius 3
@@ -971,7 +971,7 @@ Plecs {
       BrushAlpha   0
     } 
     RectangleAnnotation {
-      Position     [860, 320]
+      Position     [620, 280]
       Width        120
       Height       320
       CornerRadius 3
@@ -984,24 +984,24 @@ Plecs {
     Annotation {
       Name          "<html><body>\n<p><span style=\" font-size:12px; font-weig"
 "ht:700; color:#00ffff;\">Input Cluster</span></p></body></html>"
-      Position      [515, 145]
+      Position      [275, 105]
     } 
     Annotation {
       Name          "<html><body>\n<p><span style=\" font-family:'-apple-syste"
 "m','BlinkMacSystemFont','Segoe WPC','Segoe UI','system-ui','Ubuntu','Droid Sa"
 "ns','sans-serif'; font-size:12px; font-weight:700; color:#aaff00;\">Damping n"
 "etwork</span></p></body></html>"
-      Position      [850, 145]
+      Position      [610, 105]
     } 
     Annotation {
       Name          "<html><body>\n<p><span style=\" font-family:'-apple-syste"
 "m','BlinkMacSystemFont','Segoe WPC','Segoe UI','system-ui','Ubuntu','Droid Sa"
 "ns','sans-serif'; font-size:11px; font-weight:700; color:#aa00ff;\">Output cl"
 "uster</span></p></body></html>"
-      Position      [1115, 145]
+      Position      [875, 105]
     } 
     RectangleAnnotation {
-      Position     [990, 320]
+      Position     [750, 280]
       Width        110
       Height       320
       CornerRadius 3
@@ -1020,7 +1020,7 @@ Plecs {
 "50JywnU2Vnb2UgV1BDJywnU2Vnb2UgVUknLCdzeXN0ZW0tdWknLCdVYnVudHUnLCdEcm9pZCBTYW5"
 "zJywnc2Fucy1zZXJpZic7IGZvbnQtc2l6ZToxNHB4OyBmb250LXdlaWdodDo3MDA7IGNvbG9yOiM0"
 "MDQzNDQ7Ij7CoDwvc3Bhbj48L3A+PC9ib2R5PjwvaHRtbD4="
-      Position      [950, 145]
+      Position      [710, 105]
     } 
   }
   Analysis {
@@ -1045,4 +1045,4 @@ Plecs {
     MaxNumberOfThreads "-1"
   }
 }
-DemoSignature "eSLkm2uTXLmcYrxBevtgw0hzyUXDq378GBnwqZtYvNs="
+DemoSignature "M56k4dSuu34t88xwhpPLW/sTBy14OX7uKQ5NVejGWFg="
