@@ -1,0 +1,18 @@
+# LTspice generated output
+*.raw
+*.log
+*.net
+*.db
+*.plt
+*.fft
+*.mout
+*.bak
+*.tmp
+
+# PLECS
+*.plecs.bak
+*.plecs~
+
+# OS files
+desktop.ini
+Thumbs.db
